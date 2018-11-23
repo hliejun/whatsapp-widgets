@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
@@ -35,6 +36,27 @@ public class ConfigurationActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
+    /**
+     * The {@link android.widget.Button} to navigate backwards.
+     */
+    private Button mPrevButton;
+
+    /**
+     * The {@link android.widget.Button} to navigate forward.
+     */
+    private Button mNextButton;
+
+    /**
+     * The {@link android.widget.Button} to complete configuration.
+     */
+    private Button mCreateButton;
+
+    /**
+     * The number of fragment pages in this configuration sequence.
+     */
+    // TODO: Update section count
+    private int numOfSections = 4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +68,13 @@ public class ConfigurationActivity extends AppCompatActivity {
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // TODO: Set navigation onClick listeners
+        // Bind views
+        final View mNavTray = (View) findViewById(R.id.nav_container);
+        mPrevButton = (Button) findViewById(R.id.nav_button_prev);
+        mNextButton = (Button) findViewById(R.id.nav_button_next);
+        mCreateButton = (Button) findViewById(R.id.nav_button_create);
+
+        // TODO: Start button listener to perform checks and notify
 
         // Set up the ViewPager with the sections adapter.
         DotsIndicator mDotsIndicator = (DotsIndicator) findViewById(R.id.nav_dots_indicator);
@@ -65,6 +93,9 @@ public class ConfigurationActivity extends AppCompatActivity {
 
                 // TODO: Hide/show navigations
 
+                mNavTray.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
+                mNextButton.setVisibility(position == numOfSections - 1 ? View.GONE : View.VISIBLE);
+                mCreateButton.setVisibility(position == numOfSections - 1 ? View.VISIBLE : View.GONE);
             }
 
             @Override
@@ -74,6 +105,38 @@ public class ConfigurationActivity extends AppCompatActivity {
 
             }
         });
+
+        mPrevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int page = mViewPager.getCurrentItem();
+                if (page > 0) {
+                    page -= 1;
+                }
+                mViewPager.setCurrentItem(page, true);
+            }
+        });
+
+        mNextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int page = mViewPager.getCurrentItem();
+                if (page < numOfSections - 1) {
+                    page += 1;
+                }
+                mViewPager.setCurrentItem(page, true);
+            }
+        });
+
+        mCreateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // TODO: Complete config and create widget with acquired fields
+
+            }
+        });
+
         mDotsIndicator.setViewPager(mViewPager);
     }
 
@@ -139,7 +202,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = null;
+            View rootView;
             int sectionIndex = getArguments().getInt(ARG_SECTION_NUMBER);
 
             // TODO: Inflate fragment layouts by section index
@@ -179,11 +242,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-
-            // TODO: Update section count
-
-            // Show 3 total pages.
-            return 3;
+            return numOfSections;
         }
     }
 }

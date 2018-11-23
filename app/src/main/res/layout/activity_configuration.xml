@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:animateLayoutChanges="true"
     tools:context=".ConfigurationActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -39,23 +40,26 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <FrameLayout
+        android:id="@+id/nav_container"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_gravity="bottom"
         android:paddingEnd="@dimen/activity_horizontal_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingStart="@dimen/activity_horizontal_margin">
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:animateLayoutChanges="true"
+        android:visibility="gone">
 
         <Button
-            android:id="@+id/nav_button_back"
+            android:id="@+id/nav_button_prev"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start|center"
             android:text="@string/button_previous"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_size_button" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -68,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:dotsColor="@android:color/white"
+                app:dotsColor="@color/colorPrimaryText"
                 app:dotsCornerRadius="8dp"
                 app:dotsSize="6dp"
                 app:dotsSpacing="4dp"
@@ -76,15 +80,18 @@
 
         </LinearLayout>
 
-        <Button
+        <android.support.design.button.MaterialButton
             android:id="@+id/nav_button_create"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"
+            android:paddingLeft="@dimen/button_padding_horizontal"
+            android:paddingRight="@dimen/button_padding_horizontal"
             android:text="@string/button_create"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_size_button"
+            android:background="@color/colorAccent"
             android:visibility="gone" />
 
         <Button
@@ -94,8 +101,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"
             android:text="@string/button_next"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_size_button" />
 
     </FrameLayout>
 

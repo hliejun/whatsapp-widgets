@@ -6,6 +6,6 @@
     <string name="button_splash">START</string>
     <string name="button_previous">BACK</string>
     <string name="button_next">NEXT</string>
-    <string name="button_create">CREATE WIDGET</string>
-
+    <string name="button_create">CREATE</string>
+    <string name="splash_title">Widget Configuration</string>
 </resources>
