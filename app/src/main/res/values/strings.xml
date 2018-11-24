@@ -7,5 +7,13 @@
     <string name="button_previous">BACK</string>
     <string name="button_next">NEXT</string>
     <string name="button_create">CREATE</string>
+    <string name="splash_heading">Welcome!</string>
     <string name="splash_title">Widget Configuration</string>
+    <string name="splash_description_whatsapp_portrait">
+        Before we begin, please ensure you have installed WhatsApp.
+    </string>
+    <string name="splash_description_permissions_portrait">
+        As you proceed, you might be asked for permission to read contacts
+        from your contact list.
+    </string>
 </resources>

@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
+import com.hliejun.dev.whatsappwidgets.LockableViewPager;
 
 public class ConfigurationActivity extends AppCompatActivity {
 
@@ -32,9 +33,14 @@ public class ConfigurationActivity extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
-     * The {@link ViewPager} that will host the section contents.
+     * The {@link LockableViewPager} that will host the section contents.
      */
-    private ViewPager mViewPager;
+    private static LockableViewPager mViewPager;
+
+    /**
+     * The {@link android.widget.Button} to start configuration.
+     */
+    private Button mStartButton;
 
     /**
      * The {@link android.widget.Button} to navigate backwards.
@@ -74,12 +80,11 @@ public class ConfigurationActivity extends AppCompatActivity {
         mNextButton = (Button) findViewById(R.id.nav_button_next);
         mCreateButton = (Button) findViewById(R.id.nav_button_create);
 
-        // TODO: Start button listener to perform checks and notify
-
         // Set up the ViewPager with the sections adapter.
         DotsIndicator mDotsIndicator = (DotsIndicator) findViewById(R.id.nav_dots_indicator);
-        mViewPager = (ViewPager) findViewById(R.id.view_pager);
+        mViewPager = (LockableViewPager) findViewById(R.id.view_pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setSwipeable(false);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -96,6 +101,7 @@ public class ConfigurationActivity extends AppCompatActivity {
                 mNavTray.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
                 mNextButton.setVisibility(position == numOfSections - 1 ? View.GONE : View.VISIBLE);
                 mCreateButton.setVisibility(position == numOfSections - 1 ? View.VISIBLE : View.GONE);
+                mViewPager.setSwipeable(position != 0);
             }
 
             @Override
@@ -211,6 +217,18 @@ public class ConfigurationActivity extends AppCompatActivity {
             switch (sectionIndex) {
                 case 1:
                     rootView = inflater.inflate(R.layout.fragment_splash, container, false);
+                        Button mStartButton = rootView.findViewById(R.id.section_button);
+                        mStartButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                // TODO: Start button listener to perform checks and notify
+
+                                int page = mViewPager.getCurrentItem();
+                                page += 1;
+                                mViewPager.setCurrentItem(page, true);
+                            }
+                        });
                     break;
                 default:
                     rootView = inflater.inflate(R.layout.fragment_example, container, false);
