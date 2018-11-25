@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
-import com.hliejun.dev.whatsappwidgets.LockableViewPager;
 
 public class ConfigurationActivity extends AppCompatActivity {
 
