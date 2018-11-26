@@ -1,3 +1,104 @@
+//package com.hliejun.dev.whatsappwidgets;
+//
+//import android.app.Activity;
+//import android.appwidget.AppWidgetManager;
+//import android.content.Context;
+//import android.content.Intent;
+//import android.content.SharedPreferences;
+//import android.os.Bundle;
+//import android.view.View;
+//import android.widget.EditText;
+//
+///**
+// * The configuration screen for the {@link MediumCallWidget MediumCallWidget} AppWidget.
+// */
+//public class MediumCallWidgetConfigureActivity extends Activity {
+//
+//    private static final String PREFS_NAME = "com.hliejun.dev.whatsappwidgets.MediumCallWidget";
+//    private static final String PREF_PREFIX_KEY = "appwidget_";
+//    int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
+//    EditText mAppWidgetText;
+//    View.OnClickListener mOnClickListener = new View.OnClickListener() {
+//        public void onClick(View v) {
+//            final Context context = MediumCallWidgetConfigureActivity.this;
+//
+//            // When the button is clicked, store the string locally
+//            String widgetText = mAppWidgetText.getText().toString();
+//            saveTitlePref(context, mAppWidgetId, widgetText);
+//
+//            // It is the responsibility of the configuration activity to update the app widget
+//            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+//            MediumCallWidget.updateAppWidget(context, appWidgetManager, mAppWidgetId);
+//
+//            // Make sure we pass back the original appWidgetId
+//            Intent resultValue = new Intent();
+//            resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
+//            setResult(RESULT_OK, resultValue);
+//            finish();
+//        }
+//    };
+//
+//    public MediumCallWidgetConfigureActivity() {
+//        super();
+//    }
+//
+//    // Write the prefix to the SharedPreferences object for this widget
+//    static void saveTitlePref(Context context, int appWidgetId, String text) {
+//        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
+//        prefs.putString(PREF_PREFIX_KEY + appWidgetId, text);
+//        prefs.apply();
+//    }
+//
+//    // Read the prefix from the SharedPreferences object for this widget.
+//    // If there is no preference saved, get the default from a resource
+//    static String loadTitlePref(Context context, int appWidgetId) {
+//        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
+//        String titleValue = prefs.getString(PREF_PREFIX_KEY + appWidgetId, null);
+//        if (titleValue != null) {
+//            return titleValue;
+//        } else {
+//            return context.getString(R.string.appwidget_text);
+//        }
+//    }
+//
+//    static void deleteTitlePref(Context context, int appWidgetId) {
+//        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
+//        prefs.remove(PREF_PREFIX_KEY + appWidgetId);
+//        prefs.apply();
+//    }
+//
+//    @Override
+//    public void onCreate(Bundle icicle) {
+//        super.onCreate(icicle);
+//
+//        // Set the result to CANCELED.  This will cause the widget host to cancel
+//        // out of the widget placement if the user presses the back button.
+//        setResult(RESULT_CANCELED);
+//
+//        setContentView(R.layout.medium_call_widget_configure);
+//        mAppWidgetText = (EditText) findViewById(R.id.appwidget_text);
+//        findViewById(R.id.add_button).setOnClickListener(mOnClickListener);
+//
+//        // Find the widget id from the intent.
+//        Intent intent = getIntent();
+//        Bundle extras = intent.getExtras();
+//        if (extras != null) {
+//            mAppWidgetId = extras.getInt(
+//                    AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+//        }
+//
+//        // If this activity was started with an intent without an app widget ID, finish with an error.
+//        if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
+//            finish();
+//            return;
+//        }
+//
+//        mAppWidgetText.setText(loadTitlePref(MediumCallWidgetConfigureActivity.this, mAppWidgetId));
+//    }
+//}
+//
+
+
 package com.hliejun.dev.whatsappwidgets;
 
 import android.appwidget.AppWidgetManager;
@@ -9,26 +110,19 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.design.widget.Snackbar;
 import android.os.Bundle;
-import android.view.inputmethod.InputMethodManager;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import android.content.Intent;
@@ -41,7 +135,7 @@ import com.wafflecopter.multicontactpicker.ContactResult;
 import com.wafflecopter.multicontactpicker.LimitColumn;
 import com.wafflecopter.multicontactpicker.MultiContactPicker;
 
-public class ConfigurationActivity extends AppCompatActivity {
+public class MediumCallWidgetConfigureActivity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -57,6 +151,11 @@ public class ConfigurationActivity extends AppCompatActivity {
      * The {@link LockableViewPager} that will host the section contents.
      */
     private static LockableViewPager mViewPager;
+
+    /**
+     * The {@link android.widget.Button} to start configuration.
+     */
+    private Button mStartButton;
 
     /**
      * The {@link android.widget.Button} to navigate backwards.
@@ -79,10 +178,6 @@ public class ConfigurationActivity extends AppCompatActivity {
     // TODO: Update section count
     private int numOfSections = 4;
 
-    // Static references
-    private static FrameLayout mViewNavigator;
-    private static LinearLayout mLayout;
-
     // Static constants
     private static int CONTACT_PICKER_REQUEST = 1;
     private static int CONTACT_SEGUE_DELAY = 700;
@@ -92,14 +187,60 @@ public class ConfigurationActivity extends AppCompatActivity {
     // Widget properties
     int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
-    public ConfigurationActivity() {
+
+    View.OnClickListener mOnClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            final Context context = MediumCallWidgetConfigureActivity.this;
+
+            // When the button is clicked, store the string locally
+//            String widgetText = mAppWidgetText.getText().toString();
+//            saveTitlePref(context, mAppWidgetId, widgetText);
+
+            // It is the responsibility of the configuration activity to update the app widget
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+            MediumCallWidget.updateAppWidget(context, appWidgetManager, mAppWidgetId);
+
+            // Make sure we pass back the original appWidgetId
+            Intent resultValue = new Intent();
+            resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
+            setResult(RESULT_OK, resultValue);
+            finish();
+        }
+    };
+
+    public MediumCallWidgetConfigureActivity() {
         super();
+    }
+
+    // Write the prefix to the SharedPreferences object for this widget
+    static void saveTitlePref(Context context, int appWidgetId, String text) {
+        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
+        prefs.putString(PREF_PREFIX_KEY + appWidgetId, text);
+        prefs.apply();
+    }
+
+    // Read the prefix from the SharedPreferences object for this widget.
+    // If there is no preference saved, get the default from a resource
+    static String loadTitlePref(Context context, int appWidgetId) {
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
+        String titleValue = prefs.getString(PREF_PREFIX_KEY + appWidgetId, null);
+        if (titleValue != null) {
+            return titleValue;
+        } else {
+            return context.getString(R.string.appwidget_text);
+        }
+    }
+
+    static void deleteTitlePref(Context context, int appWidgetId) {
+        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
+        prefs.remove(PREF_PREFIX_KEY + appWidgetId);
+        prefs.apply();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_configuration);
+        setContentView(R.layout.medium_call_widget_configure);
 
         // Set the result to CANCELED.  This will cause the widget host to cancel
         // out of the widget placement if the user presses the back button.
@@ -121,8 +262,6 @@ public class ConfigurationActivity extends AppCompatActivity {
         DotsIndicator mDotsIndicator = (DotsIndicator) findViewById(R.id.nav_dots_indicator);
         mDotsIndicator.setDotsClickable(false);
         mViewPager = (LockableViewPager) findViewById(R.id.view_pager);
-        mViewNavigator = (FrameLayout) findViewById(R.id.nav_container);
-        mLayout = (LinearLayout) findViewById(R.id.main);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setSwipeable(false);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -187,8 +326,6 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         mDotsIndicator.setViewPager(mViewPager);
 
-        /*** Below Taken from Config Activity ***/
-
 //        mAppWidgetText = (EditText) findViewById(R.id.appwidget_text);
 //        findViewById(R.id.add_button).setOnClickListener(mOnClickListener);
 
@@ -202,8 +339,8 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         // If this activity was started with an intent without an app widget ID, finish with an error.
         if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
-//            finish();
-//            return;
+            finish();
+            return;
         }
     }
 
@@ -239,57 +376,6 @@ public class ConfigurationActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public static void setKeyDismiss(final EditText editText, final Context context, final Activity activity) {
-        editText.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                    if (event.getAction() == KeyEvent.ACTION_UP) {
-                        editText.clearFocus();
-                        InputMethodManager imm = (InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE);
-                        if (editText.getId() == R.id.section_options_description) {
-                            imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
-                        }
-                    }
-                }
-                return false;
-            }
-        });
-    }
-
-    public static void setViewDismiss(View view, final Context context, final Activity activity, final EditText[] editTexts) {
-        view.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                InputMethodManager imm = (InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
-                for (EditText editText : editTexts) {
-                    if (editText != null) {
-                        editText.clearFocus();
-                    }
-                }
-                return false;
-            }
-        });
-    }
-
-    public static void setPageDismiss(final ViewPager pager, final EditText[] editTexts) {
-        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                for (EditText editText : editTexts) {
-                    editText.clearFocus();
-                }
-            }
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
-
-            @Override
-            public void onPageScrollStateChanged(int state) {}
-        });
     }
 
     /**
@@ -329,20 +415,20 @@ public class ConfigurationActivity extends AppCompatActivity {
             switch (sectionIndex) {
                 case 1:
                     rootView = inflater.inflate(R.layout.fragment_splash, container, false);
-                        Button mStartButton = rootView.findViewById(R.id.section_button);
-                        mStartButton.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
+                    Button mStartButton = rootView.findViewById(R.id.section_button);
+                    mStartButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
 
-                                // TODO: Check for WhatsApp and read contact permission
-                                // TODO: Pop snackbar with actions to download WhatsApp or change settings
-                                // TODO: Advance page if no issues found
+                            // TODO: Check for WhatsApp and read contact permission
+                            // TODO: Pop snackbar with actions to download WhatsApp or change settings
+                            // TODO: Advance page if no issues found
 
-                                int page = mViewPager.getCurrentItem();
-                                page += 1;
-                                mViewPager.setCurrentItem(page, true);
-                            }
-                        });
+                            int page = mViewPager.getCurrentItem();
+                            page += 1;
+                            mViewPager.setCurrentItem(page, true);
+                        }
+                    });
                     break;
                 case 2:
                     rootView = inflater.inflate(R.layout.fragment_contact, container, false);
@@ -353,22 +439,6 @@ public class ConfigurationActivity extends AppCompatActivity {
                             invokeContactSearch();
                         }
                     });
-                    break;
-                case 3:
-                    rootView = inflater.inflate(R.layout.fragment_options, container, false);
-                    final EditText labelEditText = (EditText) rootView.findViewById(R.id.section_options_label);
-                    final EditText descriptionEditText = (EditText) rootView.findViewById(R.id.section_options_description);
-                    final EditText[] editTexts = { labelEditText, descriptionEditText };
-                    setKeyDismiss(labelEditText, getContext(), getActivity());
-                    setKeyDismiss(descriptionEditText, getContext(), getActivity());
-                    setViewDismiss(rootView, getContext(), getActivity(), editTexts);
-                    setViewDismiss(mViewPager, getContext(), getActivity(), editTexts);
-                    setViewDismiss(mViewNavigator, getContext(), getActivity(), editTexts);
-                    setViewDismiss(mLayout, getContext(), getActivity(), editTexts);
-                    setPageDismiss(mViewPager, editTexts);
-                    break;
-                case 4:
-                    rootView = inflater.inflate(R.layout.fragment_styling, container, false);
                     break;
                 default:
                     rootView = inflater.inflate(R.layout.fragment_example, container, false);
@@ -418,34 +488,24 @@ public class ConfigurationActivity extends AppCompatActivity {
                         }, CONTACT_SEGUE_DELAY);
                     } else {
                         Log.d("WhatsApp ID", "null");
-                        Snackbar snackbar = Snackbar.make(getView(), "Contact has no WhatsApp", Snackbar.LENGTH_LONG)
-                        .setAction("RETRY", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                invokeContactSearch();
-                            }
-                        });
-                        TextView snackbarActionTextView = (TextView) snackbar.getView().findViewById( android.support.design.R.id.snackbar_action );
-                        snackbarActionTextView.setTextSize(11);
-                        TextView snackbarTextView = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
-                        snackbarTextView.setTextSize(12);
-                        snackbar.show();
+                        Snackbar.make(getView(), "Contact has no WhatsApp", Snackbar.LENGTH_LONG)
+                                .setAction("RETRY", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        invokeContactSearch();
+                                    }
+                                }).show();
                     }
 
 
                 } else if(resultCode == RESULT_CANCELED) {
-                    Snackbar snackbar = Snackbar.make(getView(), "No contact selected", Snackbar.LENGTH_LONG)
+                    Snackbar.make(getView(), "No contact selected", Snackbar.LENGTH_LONG)
                             .setAction("RETRY", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     invokeContactSearch();
                                 }
-                            });
-                    TextView snackbarActionTextView = (TextView) snackbar.getView().findViewById( android.support.design.R.id.snackbar_action );
-                    snackbarActionTextView.setTextSize(11);
-                    TextView snackbarTextView = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
-                    snackbarTextView.setTextSize(12);
-                    snackbar.show();
+                            }).show();
                 }
             }
         }
@@ -492,52 +552,4 @@ public class ConfigurationActivity extends AppCompatActivity {
             return numOfSections;
         }
     }
-
-    /*** Below Taken from Config Activity ***/
-
-    View.OnClickListener mOnClickListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            final Context context = ConfigurationActivity.this;
-
-            // When the button is clicked, store the string locally
-//            String widgetText = mAppWidgetText.getText().toString();
-//            saveTitlePref(context, mAppWidgetId, widgetText);
-
-            // It is the responsibility of the configuration activity to update the app widget
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            MediumCallWidget.updateAppWidget(context, appWidgetManager, mAppWidgetId);
-
-            // Make sure we pass back the original appWidgetId
-            Intent resultValue = new Intent();
-            resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
-            setResult(RESULT_OK, resultValue);
-            finish();
-        }
-    };
-
-    // Write the prefix to the SharedPreferences object for this widget
-    static void saveTitlePref(Context context, int appWidgetId, String text) {
-        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
-        prefs.putString(PREF_PREFIX_KEY + appWidgetId, text);
-        prefs.apply();
-    }
-
-    // Read the prefix from the SharedPreferences object for this widget.
-    // If there is no preference saved, get the default from a resource
-    static String loadTitlePref(Context context, int appWidgetId) {
-        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
-        String titleValue = prefs.getString(PREF_PREFIX_KEY + appWidgetId, null);
-        if (titleValue != null) {
-            return titleValue;
-        } else {
-            return context.getString(R.string.appwidget_text);
-        }
-    }
-
-    static void deleteTitlePref(Context context, int appWidgetId) {
-        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
-        prefs.remove(PREF_PREFIX_KEY + appWidgetId);
-        prefs.apply();
-    }
-
 }

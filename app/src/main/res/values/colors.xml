@@ -7,7 +7,9 @@
     <color name="colorSecondaryLight">#009688</color>
     <color name="colorSecondaryDark">#00695C</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorAccentAlt">#A7FFEB</color>
     <color name="colorTextIcons">#FFFFFF</color>
     <color name="colorPrimaryText">#FFFFFF</color>
-    <color name="colorSecondaryText">#ECEFF1</color>
+    <color name="colorSecondaryText">#B0BEC5</color>
+    <color name="colorWarning">#FFD600</color>
 </resources>

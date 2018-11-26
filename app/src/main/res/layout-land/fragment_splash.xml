@@ -16,7 +16,7 @@
         android:layout_gravity="center"
         android:text="@string/splash_heading"
         android:textColor="@color/colorPrimaryText"
-        android:textSize="@dimen/text_size_heading"
+        android:textSize="@dimen/text_size_title"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +89,7 @@
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:text="@string/splash_title"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="@dimen/text_size_title" />
+                    android:textSize="@dimen/text_size_subtitle" />
 
                 <TextView
                     android:id="@+id/section_description_whatsapp"
@@ -99,7 +99,7 @@
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:text="@string/splash_description_whatsapp_portrait"
-                    android:textColor="@color/colorSecondaryText"
+                    android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/text_size_normal" />
 
                 <TextView
@@ -110,7 +110,7 @@
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:text="@string/splash_description_permissions_portrait"
-                    android:textColor="@color/colorSecondaryText"
+                    android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/text_size_normal" />
 
             </LinearLayout>

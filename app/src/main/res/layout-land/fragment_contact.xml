@@ -113,7 +113,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/section_description_permissions" />
+        app:layout_constraintTop_toBottomOf="@+id/section_description_permissions"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
     <!-- TODO: Add layout and assets for picking contact -->
