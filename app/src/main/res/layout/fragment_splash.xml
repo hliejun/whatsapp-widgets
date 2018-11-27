@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
+    android:id="@+id/fragment_splash_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
     tools:context=".ConfigurationActivity$PlaceholderFragment">
 
+    <!-- TODO: Check and ID all views -->
+
     <TextView
         android:id="@+id/section_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:text="@string/splash_heading"
         android:textColor="@color/colorPrimaryText"
         android:textSize="@dimen/text_size_title"
@@ -44,13 +49,13 @@
         android:id="@+id/section_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_margin_double"
         android:text="@string/splash_title"
         android:textColor="@color/colorPrimaryText"
         android:textSize="@dimen/text_size_subtitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/section_image" />
 
@@ -108,13 +113,11 @@
         app:layout_constraintStart_toEndOf="@+id/section_dot_permissions"
         app:layout_constraintTop_toBottomOf="@+id/section_description_whatsapp" />
 
-    <!-- TODO: Add prerequisites explanation (WhatsApp and contacts) -->
-
     <android.support.design.button.MaterialButton
+        style="@style/Widget.AppCompat.Button"
         android:id="@+id/section_button"
-        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/button_height"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:background="?attr/colorAccent"

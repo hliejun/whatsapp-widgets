@@ -3,11 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
+    android:id="@+id/fragment_splash_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
     tools:context=".ConfigurationActivity$PlaceholderFragment">
+
+    <!-- TODO: Check and ID all views -->
 
     <TextView
         android:id="@+id/section_heading"
@@ -86,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginTop="@dimen/activity_margin_half"
                     android:text="@string/splash_title"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/text_size_subtitle" />
@@ -97,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginTop="@dimen/activity_margin_half"
                     android:text="@string/splash_description_whatsapp_portrait"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/text_size_normal" />
@@ -108,20 +110,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginTop="@dimen/activity_margin_half"
                     android:text="@string/splash_description_permissions_portrait"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/text_size_normal" />
 
             </LinearLayout>
 
-            <!-- TODO: Add prerequisites explanation (WhatsApp and contacts) -->
-
             <android.support.design.button.MaterialButton
                 android:id="@+id/section_button"
-                style="@style/Widget.AppCompat.Button.Borderless"
+                style="@style/Widget.AppCompat.Button"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/button_height"
                 android:layout_marginTop="@dimen/activity_margin_half"
                 android:background="?attr/colorAccent"
                 android:minWidth="@dimen/button_min_width"

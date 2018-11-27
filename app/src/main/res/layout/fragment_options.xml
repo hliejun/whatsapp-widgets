@@ -1,259 +1,268 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
+    android:id="@+id/fragment_options_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:background="?attr/colorPrimary"
     tools:context=".ConfigurationActivity$PlaceholderFragment">
 
-    <!-- TODO: Add layout and assets for options -->
+    <!-- TODO: Check and ID all views -->
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/fragment_options_container"
+    <TextView
+        android:id="@+id/section_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:text="@string/options_title"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="@dimen/text_size_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/section_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_margin_double"
+        android:layout_marginRight="@dimen/activity_margin_double"
+        android:text="@string/options_subtitle"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="@dimen/text_size_subtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/section_title" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
-
-        <TextView
-            android:id="@+id/section_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:text="@string/options_title"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/text_size_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/section_subtitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_margin_double"
-            android:layout_marginRight="@dimen/activity_margin_double"
-            android:text="@string/options_subtitle"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/text_size_subtitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/section_title" />
-
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/section_options_label"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_margin_content"
-            android:layout_marginLeft="@dimen/activity_margin_double"
-            android:layout_marginRight="@dimen/activity_margin_double"
-            android:hint="@string/options_label_hint"
-            android:textSize="@dimen/text_size_title"
-            android:nextFocusUp="@id/section_options_label"
-            android:nextFocusLeft="@id/section_options_label"
-            app:met_floatingLabelText="@string/options_label_label"
-            app:met_floatingLabel="highlight"
-            app:met_floatingLabelAlwaysShown="true"
-            app:met_baseColor="@color/colorPrimaryText"
-            app:met_primaryColor="@color/colorPrimaryText"
-            app:met_errorColor="@color/colorWarning"
-            app:met_singleLineEllipsis="true"
-            app:met_maxCharacters="30"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/section_subtitle" />
-
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/section_options_description"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_margin_double"
-            android:layout_marginRight="@dimen/activity_margin_double"
-            android:hint="@string/options_description_hint"
-            android:textSize="@dimen/text_size_title"
-            android:nextFocusUp="@id/section_options_description"
-            android:nextFocusLeft="@id/section_options_description"
-            app:met_floatingLabelText="@string/options_description_label"
-            app:met_floatingLabel="highlight"
-            app:met_floatingLabelAlwaysShown="true"
-            app:met_baseColor="@color/colorPrimaryText"
-            app:met_primaryColor="@color/colorPrimaryText"
-            app:met_errorColor="@color/colorWarning"
-            app:met_singleLineEllipsis="true"
-            app:met_maxCharacters="40"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/section_options_label" />
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/section_subtitle"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/section_options_number"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_margin_content"
-            android:layout_marginLeft="@dimen/activity_margin_double"
-            android:layout_marginRight="@dimen/activity_margin_double"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/section_options_description">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:id="@+id/section_options_number_text"
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/section_options_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toStartOf="@+id/section_options_number_toggle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/section_options_number_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/options_number_label"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="@dimen/text_size_subtitle" />
-
-                <TextView
-                    android:id="@+id/section_options_number_description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/options_number_description"
-                    android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/text_size_small" />
-
-            </LinearLayout>
-
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/section_options_number_toggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_margin_double"
+                android:layout_marginRight="@dimen/activity_margin_double"
+                android:hint="@string/options_label_hint"
+                android:textSize="@dimen/text_size_title"
+                android:nextFocusUp="@id/section_options_label"
+                android:nextFocusLeft="@id/section_options_label"
+                app:met_floatingLabelText="@string/options_label_label"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelAlwaysShown="true"
+                app:met_baseColor="@color/colorPrimaryText"
+                app:met_primaryColor="@color/colorPrimaryText"
+                app:met_errorColor="@color/colorWarning"
+                app:met_singleLineEllipsis="true"
+                app:met_maxCharacters="30"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/section_options_number_text"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/section_options_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_margin_half"
+                android:layout_marginLeft="@dimen/activity_margin_double"
+                android:layout_marginRight="@dimen/activity_margin_double"
+                android:hint="@string/options_description_hint"
+                android:textSize="@dimen/text_size_title"
+                android:nextFocusUp="@id/section_options_description"
+                android:nextFocusLeft="@id/section_options_description"
+                app:met_floatingLabelText="@string/options_description_label"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelAlwaysShown="true"
+                app:met_baseColor="@color/colorPrimaryText"
+                app:met_primaryColor="@color/colorPrimaryText"
+                app:met_errorColor="@color/colorWarning"
+                app:met_singleLineEllipsis="true"
+                app:met_maxCharacters="40"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/section_options_label" />
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/section_options_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_margin_half"
+                android:layout_marginLeft="@dimen/activity_margin_double"
+                android:layout_marginRight="@dimen/activity_margin_double"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/section_options_description">
+
+                <LinearLayout
+                    android:id="@+id/section_options_number_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/section_options_number_toggle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/section_options_number_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/options_number_label"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="@dimen/text_size_subtitle" />
+
+                    <TextView
+                        android:id="@+id/section_options_number_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/options_number_description"
+                        android:textColor="@color/colorSecondaryText"
+                        android:textSize="@dimen/text_size_small" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/section_options_number_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/section_options_number_text"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/section_options_avatar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_margin_content"
+                android:layout_marginLeft="@dimen/activity_margin_double"
+                android:layout_marginRight="@dimen/activity_margin_double"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/section_options_number">
+
+                <LinearLayout
+                    android:id="@+id/section_options_avatar_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/section_options_avatar_toggle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/section_options_avatar_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/options_avatar_label"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="@dimen/text_size_subtitle" />
+
+                    <TextView
+                        android:id="@+id/section_options_avatar_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/options_avatar_description"
+                        android:textColor="@color/colorSecondaryText"
+                        android:textSize="@dimen/text_size_small" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/section_options_avatar_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/section_options_avatar_text"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/section_options_large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_margin_content"
+                android:layout_marginBottom="@dimen/activity_margin_double"
+                android:layout_marginLeft="@dimen/activity_margin_double"
+                android:layout_marginRight="@dimen/activity_margin_double"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/section_options_avatar">
+
+                <LinearLayout
+                    android:id="@+id/section_options_large_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/section_options_large_toggle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/section_options_large_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/options_large_label"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="@dimen/text_size_subtitle" />
+
+                    <TextView
+                        android:id="@+id/section_options_large_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/options_large_description"
+                        android:textColor="@color/colorSecondaryText"
+                        android:textSize="@dimen/text_size_small" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/section_options_large_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/section_options_large_text"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
 
         </android.support.constraint.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/section_options_avatar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_margin_double"
-            android:layout_marginLeft="@dimen/activity_margin_double"
-            android:layout_marginRight="@dimen/activity_margin_double"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/section_options_number">
+    </ScrollView>
 
-            <LinearLayout
-                android:id="@+id/section_options_avatar_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toStartOf="@+id/section_options_avatar_toggle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/section_options_avatar_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/options_avatar_label"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="@dimen/text_size_subtitle" />
-
-                <TextView
-                    android:id="@+id/section_options_avatar_description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/options_avatar_description"
-                    android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/text_size_small" />
-
-            </LinearLayout>
-
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/section_options_avatar_toggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/section_options_avatar_text"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </android.support.constraint.ConstraintLayout>
-
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/section_options_large"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_margin_double"
-            android:layout_marginBottom="@dimen/activity_margin_double"
-            android:layout_marginLeft="@dimen/activity_margin_double"
-            android:layout_marginRight="@dimen/activity_margin_double"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/section_options_avatar">
-
-            <LinearLayout
-                android:id="@+id/section_options_large_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toStartOf="@+id/section_options_large_toggle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/section_options_large_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/options_large_label"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="@dimen/text_size_subtitle" />
-
-                <TextView
-                    android:id="@+id/section_options_large_description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/options_large_description"
-                    android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/text_size_small" />
-
-            </LinearLayout>
-
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/section_options_large_toggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/section_options_large_text"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </android.support.constraint.ConstraintLayout>
-
-    </android.support.constraint.ConstraintLayout>
-
-</ScrollView>
+</android.support.constraint.ConstraintLayout>

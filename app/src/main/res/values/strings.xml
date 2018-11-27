@@ -10,7 +10,7 @@
     <string name="button_create">CREATE</string>
     <string name="dot">•</string>
     <string name="splash_heading">Widget Configuration</string>
-    <string name="splash_title">Before We Begin...</string>
+    <string name="splash_title">Before we begin...</string>
     <string name="splash_description_whatsapp_portrait">
         Please ensure that you have WhatsApp installed.
     </string>
@@ -50,4 +50,9 @@
     <string name="options_large_description">
         Larger font size for accessibility
     </string>
+    <string name="styling_title">3. Select Widget Style</string>
+    <string name="styling_subtitle">
+        Choose a widget color for this contact:
+    </string>
+    <string name="grid_item_label">Grid View Item</string>
 </resources>

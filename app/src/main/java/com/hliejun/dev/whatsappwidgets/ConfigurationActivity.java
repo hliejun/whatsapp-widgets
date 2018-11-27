@@ -1,39 +1,43 @@
 package com.hliejun.dev.whatsappwidgets;
 
-import android.appwidget.AppWidgetManager;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Handler;
-import android.provider.ContactsContract;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
 import android.app.Activity;
+
+import android.os.Bundle;
+import android.os.Handler;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+
+import android.provider.ContactsContract;
+import android.database.Cursor;
+import android.util.Log;
+
+import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.support.design.widget.Snackbar;
-import android.os.Bundle;
+
 import android.view.inputmethod.InputMethodManager;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 
+import android.appwidget.AppWidgetManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import android.content.Intent;
-import android.database.Cursor;
-import android.util.Log;
 import java.util.List;
 
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
@@ -82,6 +86,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     // Static references
     private static FrameLayout mViewNavigator;
     private static LinearLayout mLayout;
+    private static GridView gridView;
 
     // Static constants
     private static int CONTACT_PICKER_REQUEST = 1;
@@ -90,7 +95,8 @@ public class ConfigurationActivity extends AppCompatActivity {
     private static final String PREF_PREFIX_KEY = "appwidget_";
 
     // Widget properties
-    int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
+    static int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
+    static String styleColor = null;
 
     public ConfigurationActivity() {
         super();
@@ -107,37 +113,38 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // Bind views
-        final View mNavTray = (View) findViewById(R.id.nav_container);
+        // Bind layout
+        mLayout = (LinearLayout) findViewById(R.id.main);
+
+        // Bind buttons
         mPrevButton = (Button) findViewById(R.id.nav_button_prev);
         mNextButton = (Button) findViewById(R.id.nav_button_next);
         mCreateButton = (Button) findViewById(R.id.nav_button_create);
 
-        // Set up the ViewPager with the sections adapter.
+        // Bind navigator
         DotsIndicator mDotsIndicator = (DotsIndicator) findViewById(R.id.nav_dots_indicator);
         mDotsIndicator.setDotsClickable(false);
-        mViewPager = (LockableViewPager) findViewById(R.id.view_pager);
         mViewNavigator = (FrameLayout) findViewById(R.id.nav_container);
-        mLayout = (LinearLayout) findViewById(R.id.main);
+
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (LockableViewPager) findViewById(R.id.view_pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setSwipeable(false);
+
+        // TODO: Set offscreen limit to 1 if fragment stub lazy load works
+        mViewPager.setOffscreenPageLimit(numOfSections);
+
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-                // TODO: Animate between pages (colours, etc.)
-
-            }
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 
             @Override
             public void onPageSelected(int position) {
-
-                // TODO: Hide/show navigations
-
                 mPrevButton.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
                 mNextButton.setVisibility(position == numOfSections - 1 || position == 0 ? View.GONE : View.VISIBLE);
                 mCreateButton.setVisibility(position == numOfSections - 1 ? View.VISIBLE : View.GONE);
@@ -145,16 +152,12 @@ public class ConfigurationActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
-
-                // TODO: Page scroll state dependent logic
-
-            }
+            public void onPageScrollStateChanged(int state) {}
         });
 
         mPrevButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 int page = mViewPager.getCurrentItem();
                 if (page > 0) {
                     page -= 1;
@@ -165,7 +168,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 int page = mViewPager.getCurrentItem();
                 if (page < numOfSections - 1) {
                     page += 1;
@@ -176,10 +179,10 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         mCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
 
                 // TODO: Check if contact has been set correctly
-                // TODO: Complete config and create widget with acquired fields
+                // TODO: Complete config and create widget with acquired fields (save prefs with widget ID)
                 // TODO: Snackbar display if no contact, with fix option to go to contacts
 
             }
@@ -244,7 +247,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     public static void setKeyDismiss(final EditText editText, final Context context, final Activity activity) {
         editText.setOnKeyListener(new View.OnKeyListener() {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
+            public boolean onKey(View view, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_ENTER) {
                     if (event.getAction() == KeyEvent.ACTION_UP) {
                         editText.clearFocus();
@@ -262,7 +265,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     public static void setViewDismiss(View view, final Context context, final Activity activity, final EditText[] editTexts) {
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
+            public boolean onTouch(View view, MotionEvent event) {
                 InputMethodManager imm = (InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
                 for (EditText editText : editTexts) {
@@ -295,7 +298,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
+    public static class PlaceholderFragment extends AsyncFragment {
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -318,35 +321,32 @@ public class ConfigurationActivity extends AppCompatActivity {
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView;
+        protected void onCreateViewAfterViewStubInflated(View inflatedView, Bundle savedInstanceState) {
+
+            // TODO: Load/set field values for respective segments
+            // TODO: Extract into view adapters
+
             int sectionIndex = getArguments().getInt(ARG_SECTION_NUMBER);
-
-            // TODO: Inflate fragment layouts by section index
-            // TODO: Fill in field values
-
             switch (sectionIndex) {
                 case 1:
-                    rootView = inflater.inflate(R.layout.fragment_splash, container, false);
-                        Button mStartButton = rootView.findViewById(R.id.section_button);
-                        mStartButton.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
+                    Button mStartButton = inflatedView.findViewById(R.id.section_button);
+                    mStartButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
-                                // TODO: Check for WhatsApp and read contact permission
-                                // TODO: Pop snackbar with actions to download WhatsApp or change settings
-                                // TODO: Advance page if no issues found
+                            // TODO: Check for WhatsApp and read contact permission
+                            // TODO: Pop snackbar with actions to download WhatsApp or change settings
+                            // TODO: Advance page if no issues found
 
-                                int page = mViewPager.getCurrentItem();
-                                page += 1;
-                                mViewPager.setCurrentItem(page, true);
-                            }
-                        });
+                            int page = mViewPager.getCurrentItem();
+                            page += 1;
+                            mViewPager.setSwipeable(true);
+                            mViewPager.setCurrentItem(page, true);
+                        }
+                    });
                     break;
                 case 2:
-                    rootView = inflater.inflate(R.layout.fragment_contact, container, false);
-                    Button mContactButton = rootView.findViewById(R.id.section_button);
+                    Button mContactButton = inflatedView.findViewById(R.id.section_button);
                     mContactButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -355,29 +355,57 @@ public class ConfigurationActivity extends AppCompatActivity {
                     });
                     break;
                 case 3:
-                    rootView = inflater.inflate(R.layout.fragment_options, container, false);
-                    final EditText labelEditText = (EditText) rootView.findViewById(R.id.section_options_label);
-                    final EditText descriptionEditText = (EditText) rootView.findViewById(R.id.section_options_description);
+                    final EditText labelEditText = (EditText) inflatedView.findViewById(R.id.section_options_label);
+                    final EditText descriptionEditText = (EditText) inflatedView.findViewById(R.id.section_options_description);
                     final EditText[] editTexts = { labelEditText, descriptionEditText };
                     setKeyDismiss(labelEditText, getContext(), getActivity());
                     setKeyDismiss(descriptionEditText, getContext(), getActivity());
-                    setViewDismiss(rootView, getContext(), getActivity(), editTexts);
+                    setViewDismiss(inflatedView, getContext(), getActivity(), editTexts);
                     setViewDismiss(mViewPager, getContext(), getActivity(), editTexts);
                     setViewDismiss(mViewNavigator, getContext(), getActivity(), editTexts);
                     setViewDismiss(mLayout, getContext(), getActivity(), editTexts);
                     setPageDismiss(mViewPager, editTexts);
                     break;
                 case 4:
-                    rootView = inflater.inflate(R.layout.fragment_styling, container, false);
+                    final PaletteGridViewAdapter gridAdapter = new PaletteGridViewAdapter(inflatedView.getContext());
+                    gridView = (GridView) inflatedView.findViewById(R.id.section_styling_grid);
+                    gridView.setAdapter(gridAdapter);
+                    gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int index, long id) {
+                            String prevColor = gridAdapter.getSelectedColor();
+                            gridAdapter.setSelection(index);
+
+                            String currColor = gridAdapter.getSelectedColor();
+                            if (currColor != null && !currColor.equals(prevColor)) {
+                                styleColor = currColor;
+                                gridAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    });
                     break;
                 default:
-                    rootView = inflater.inflate(R.layout.fragment_example, container, false);
-                    TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+                    TextView textView = (TextView) inflatedView.findViewById(R.id.section_label);
                     textView.setText(getString(R.string.section_format, sectionIndex));
                     break;
             }
+        }
 
-            return rootView;
+        @Override
+        protected int getViewStubLayoutResource() {
+            int sectionIndex = getArguments().getInt(ARG_SECTION_NUMBER);
+            switch (sectionIndex) {
+                case 1:
+                    return R.layout.fragment_splash;
+                case 2:
+                    return R.layout.fragment_contact;
+                case 3:
+                    return R.layout.fragment_options;
+                case 4:
+                    return R.layout.fragment_styling;
+                default:
+                    return R.layout.fragment_example;
+            }
         }
 
         @Override
@@ -421,7 +449,7 @@ public class ConfigurationActivity extends AppCompatActivity {
                         Snackbar snackbar = Snackbar.make(getView(), "Contact has no WhatsApp", Snackbar.LENGTH_LONG)
                         .setAction("RETRY", new View.OnClickListener() {
                             @Override
-                            public void onClick(View v) {
+                            public void onClick(View view) {
                                 invokeContactSearch();
                             }
                         });
@@ -437,10 +465,13 @@ public class ConfigurationActivity extends AppCompatActivity {
                     Snackbar snackbar = Snackbar.make(getView(), "No contact selected", Snackbar.LENGTH_LONG)
                             .setAction("RETRY", new View.OnClickListener() {
                                 @Override
-                                public void onClick(View v) {
+                                public void onClick(View view) {
                                     invokeContactSearch();
                                 }
                             });
+
+                    // TODO: Extract snackbar text sizes to dimens
+
                     TextView snackbarActionTextView = (TextView) snackbar.getView().findViewById( android.support.design.R.id.snackbar_action );
                     snackbarActionTextView.setTextSize(11);
                     TextView snackbarTextView = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
@@ -452,7 +483,6 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         public void invokeContactSearch() {
 
-            // TODO: Contact button to invoke contact picker activity
             // TODO: Set fragment/activity to listen for results
 
             new MultiContactPicker.Builder(PlaceholderFragment.this)
@@ -462,10 +492,6 @@ public class ConfigurationActivity extends AppCompatActivity {
                     .theme(R.style.AppTheme_NoActionBar)
                     .handleColor(ContextCompat.getColor(getContext(), R.color.colorPrimary))
                     .bubbleColor(ContextCompat.getColor(getContext(), R.color.colorPrimary))
-                    .setActivityAnimations(android.R.anim.fade_in,
-                            android.R.anim.fade_out,
-                            android.R.anim.fade_in,
-                            android.R.anim.fade_out)
                     .showPickerForResult(CONTACT_PICKER_REQUEST);
         }
     }
@@ -476,8 +502,8 @@ public class ConfigurationActivity extends AppCompatActivity {
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
+        public SectionsPagerAdapter(FragmentManager manager) {
+            super(manager);
         }
 
         @Override
@@ -496,7 +522,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     /*** Below Taken from Config Activity ***/
 
     View.OnClickListener mOnClickListener = new View.OnClickListener() {
-        public void onClick(View v) {
+        public void onClick(View view) {
             final Context context = ConfigurationActivity.this;
 
             // When the button is clicked, store the string locally

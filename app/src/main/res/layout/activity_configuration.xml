@@ -9,6 +9,8 @@
     android:fitsSystemWindows="true"
     tools:context=".ConfigurationActivity">
 
+    <!-- TODO: Check and ID all views -->
+
     <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
@@ -105,9 +107,9 @@
 
                 <android.support.design.button.MaterialButton
                     android:id="@+id/nav_button_create"
-                    style="@style/Widget.AppCompat.Button.Borderless"
+                    style="@style/Widget.AppCompat.Button"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/button_height"
                     android:layout_gravity="end|center"
                     android:paddingLeft="@dimen/button_padding_horizontal"
                     android:paddingRight="@dimen/button_padding_horizontal"

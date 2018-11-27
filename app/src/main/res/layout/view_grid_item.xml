@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/grid_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/grid_item_padding">
+
+    <!-- TODO: Add check view layer -->
+    <!-- TODO: Extract sizes to dimens -->
+    <!-- TODO: Check and ID all views -->
+    <!-- TODO: Create landscape version (grid sizing) -->
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:cardCornerRadius="30dp">
+
+            <!-- TODO: Change check source and sizing -->
+
+            <ImageView
+                android:id="@+id/grid_item_preview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/grid_item_check"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_check"
+                android:tint="@color/colorTextIcons"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:id="@+id/grid_item_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_margin_half"
+            android:gravity="center"
+            android:text="@string/grid_item_label"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_size_small"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>
