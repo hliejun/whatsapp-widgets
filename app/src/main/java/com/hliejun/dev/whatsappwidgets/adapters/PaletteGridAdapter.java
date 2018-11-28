@@ -1,9 +1,7 @@
-package com.hliejun.dev.whatsappwidgets;
+package com.hliejun.dev.whatsappwidgets.adapters;
 
 import android.annotation.SuppressLint;
-import android.widget.BaseAdapter;
-import android.widget.TextView;
-import android.widget.ImageView;
+
 import android.content.Context;
 import android.graphics.Color;
 
@@ -11,50 +9,56 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 
-public class PaletteGridViewAdapter extends BaseAdapter {
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+import android.widget.ImageView;
+
+import com.hliejun.dev.whatsappwidgets.R;
+
+public class PaletteGridAdapter extends BaseAdapter {
     private Context mContext;
 
-    // TODO: Make palette objects
+    // TODO: Make palette objects and move values to fragment
 
     final String[] labels = {
-            "Red",
-            "Pink",
-            "Purple",
-            "Lavender",
-            "Indigo",
-            "Blue",
-            "Cyan",
-            "Teal",
-            "Green",
-            "Olive",
-            "Yellow",
-            "Orange",
-            "Brown",
-            "Gray",
-            "Metal"
+        "Red",
+        "Pink",
+        "Purple",
+        "Lavender",
+        "Indigo",
+        "Blue",
+        "Cyan",
+        "Teal",
+        "Green",
+        "Olive",
+        "Yellow",
+        "Orange",
+        "Brown",
+        "Gray",
+        "Metal"
     };
 
     final String[] colors = {
-            "#D32F2F",
-            "#FF4081",
-            "#AB47BC",
-            "#7E57C2",
-            "#5C6BC0",
-            "#1E88E5",
-            "#0097A7",
-            "#009688",
-            "#43A047",
-            "#827717",
-            "#FBC02D",
-            "#F4511E",
-            "#8D6E63",
-            "#9E9E9E",
-            "#90A4AE"
+        "#D32F2F",
+        "#FF4081",
+        "#AB47BC",
+        "#7E57C2",
+        "#5C6BC0",
+        "#1E88E5",
+        "#0097A7",
+        "#009688",
+        "#43A047",
+        "#827717",
+        "#FBC02D",
+        "#F4511E",
+        "#8D6E63",
+        "#9E9E9E",
+        "#90A4AE"
     };
 
     private int selectionIndex = -1;
 
-    public PaletteGridViewAdapter(Context context) {
+    public PaletteGridAdapter(Context context) {
         mContext = context;
     }
 

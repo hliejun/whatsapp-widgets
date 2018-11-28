@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
-    tools:context=".ConfigurationActivity$PlaceholderFragment">
+    tools:context=".ConfigurationActivity$SectionFragment">
 
     <TextView
         android:id="@+id/section_label"

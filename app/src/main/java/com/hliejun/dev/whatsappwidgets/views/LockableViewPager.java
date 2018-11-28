@@ -1,9 +1,11 @@
-package com.hliejun.dev.whatsappwidgets;
+package com.hliejun.dev.whatsappwidgets.views;
 
 import android.support.v4.view.ViewPager;
 
 import android.content.Context;
+
 import android.util.AttributeSet;
+
 import android.view.MotionEvent;
 
 public class LockableViewPager extends ViewPager {
@@ -21,24 +23,33 @@ public class LockableViewPager extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (this.isSwipeEnabled) {
-            return super.onTouchEvent(event);
-        }
+        return this.isSwipeEnabled && super.onTouchEvent(event);
 
-        return false;
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        if (this.isSwipeEnabled) {
-            return super.onInterceptTouchEvent(event);
-        }
-
-        return false;
+        return this.isSwipeEnabled && super.onInterceptTouchEvent(event);
     }
+
+    /*** Interface ***/
 
     public void setSwipeable(boolean swipeable) {
         this.isSwipeEnabled = swipeable;
+    }
+
+    public void incrementPage() {
+        int page = getCurrentItem();
+        if (page < getAdapter().getCount() - 1) {
+            setCurrentItem(page + 1, true);
+        }
+    }
+
+    public void decrementPage() {
+        int page = getCurrentItem();
+        if (page > 0) {
+            setCurrentItem(page - 1, true);
+        }
     }
 
 }

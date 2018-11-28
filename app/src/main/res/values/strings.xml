@@ -1,58 +1,49 @@
 <resources>
     <string name="app_name">WhatsApp Widgets</string>
+
     <string name="action_reset">Reset</string>
     <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="dot">•</string>
+
     <string name="button_splash">START</string>
     <string name="button_contact">PICK CONTACT</string>
     <string name="button_previous">BACK</string>
     <string name="button_next">NEXT</string>
     <string name="button_create">CREATE</string>
-    <string name="dot">•</string>
+
     <string name="splash_heading">Widget Configuration</string>
     <string name="splash_title">Before we begin...</string>
-    <string name="splash_description_whatsapp_portrait">
-        Please ensure that you have WhatsApp installed.
-    </string>
-    <string name="splash_description_permissions_portrait">
-        When prompted, please allow setup to read from your contacts.
-    </string>
+    <string name="splash_description_whatsapp_portrait">Please ensure that you have WhatsApp installed.</string>
+    <string name="splash_description_permissions_portrait">When prompted, please allow setup to read from your contacts.</string>
+
     <string name="contact_title">1. Choose Contact</string>
-    <string name="contact_subtitle">
-        Who would you like the widget to be linked with?
-    </string>
-    <string name="contact_description_feature_1">
-        You will be contacting this person directly when you press the widget.
-    </string>
-    <string name="contact_description_feature_2">
-        Contact details of this person might be displayed on your home screen.
-    </string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="configure">Configure</string>
-    <string name="add_widget">Add widget</string>
+    <string name="contact_subtitle">Who would you like the widget to be linked with?</string>
+    <string name="contact_description_feature_1">You will be contacting this person directly when you press the widget.</string>
+    <string name="contact_description_feature_2">Contact details of this person might be displayed on your home screen.</string>
+    <string name="contact_no_whatsapp">Contact has no WhatsApp</string>
+    <string name="contact_incomplete">No contact selected</string>
+    <string name="contact_retry">RETRY</string>
+
     <string name="options_title">2. Widget Options</string>
-    <string name="options_subtitle">
-        How would you like your widget to look?
-    </string>
+    <string name="options_subtitle">How would you like your widget to look?</string>
     <string name="options_label_hint">e.g. Jane Smith</string>
     <string name="options_label_label">Name / Label</string>
     <string name="options_description_hint">e.g. Project Manager</string>
     <string name="options_description_label">Description</string>
     <string name="options_number_label">Show Phone Number</string>
-    <string name="options_number_description">
-        Phone number will be displayed
-    </string>
+    <string name="options_number_description">Phone number will be displayed</string>
     <string name="options_avatar_label">Display Avatar</string>
-    <string name="options_avatar_description">
-        Contact profile photo will be visible
-    </string>
+    <string name="options_avatar_description">Contact profile photo will be visible</string>
     <string name="options_large_label">Use Large Text</string>
-    <string name="options_large_description">
-        Larger font size for accessibility
-    </string>
+    <string name="options_large_description">Larger font size for accessibility</string>
+
     <string name="styling_title">3. Select Widget Style</string>
-    <string name="styling_subtitle">
-        Choose a widget color for this contact:
-    </string>
-    <string name="grid_item_label">Grid View Item</string>
+    <string name="styling_subtitle">Choose a widget color for this contact:</string>
+    <string name="styling_grid_item_label">Grid View Item</string>
+
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
 </resources>

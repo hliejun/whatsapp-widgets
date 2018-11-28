@@ -130,6 +130,7 @@ import android.database.Cursor;
 import android.util.Log;
 import java.util.List;
 
+import com.hliejun.dev.whatsappwidgets.views.LockableViewPager;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 import com.wafflecopter.multicontactpicker.ContactResult;
 import com.wafflecopter.multicontactpicker.LimitColumn;
@@ -543,7 +544,7 @@ public class MediumCallWidgetConfigureActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
+            // Return a SectionFragment (defined as a static inner class below).
             return PlaceholderFragment.newInstance(position + 1);
         }
 

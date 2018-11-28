@@ -9,7 +9,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:background="?attr/colorPrimary"
-    tools:context=".ConfigurationActivity$PlaceholderFragment">
+    tools:context=".ConfigurationActivity$SectionFragment">
 
     <!-- TODO: Check and ID all views -->
 
@@ -46,6 +46,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:requiresFadingEdge="vertical"
+        android:fadingEdgeLength="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,8 +67,7 @@
                 android:layout_marginRight="@dimen/activity_margin_double"
                 android:hint="@string/options_label_hint"
                 android:textSize="@dimen/text_size_title"
-                android:nextFocusUp="@id/section_options_label"
-                android:nextFocusLeft="@id/section_options_label"
+                android:nextFocusForward="@+id/section_options_description"
                 app:met_floatingLabelText="@string/options_label_label"
                 app:met_floatingLabel="highlight"
                 app:met_floatingLabelAlwaysShown="true"
@@ -89,8 +90,7 @@
                 android:layout_marginRight="@dimen/activity_margin_double"
                 android:hint="@string/options_description_hint"
                 android:textSize="@dimen/text_size_title"
-                android:nextFocusUp="@id/section_options_description"
-                android:nextFocusLeft="@id/section_options_description"
+                android:imeOptions="actionDone"
                 app:met_floatingLabelText="@string/options_description_label"
                 app:met_floatingLabel="highlight"
                 app:met_floatingLabelAlwaysShown="true"

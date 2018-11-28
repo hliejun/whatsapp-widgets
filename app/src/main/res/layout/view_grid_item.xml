@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_margin_half"
             android:gravity="center"
-            android:text="@string/grid_item_label"
+            android:text="@string/styling_grid_item_label"
             android:textColor="@color/colorPrimaryText"
             android:textSize="@dimen/text_size_small"
             android:textStyle="bold" />
