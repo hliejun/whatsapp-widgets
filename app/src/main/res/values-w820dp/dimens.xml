@@ -9,4 +9,6 @@
     <dimen name="text_size_normal">18sp</dimen>
     <dimen name="text_size_small">16sp</dimen>
     <dimen name="text_size_button">17sp</dimen>
+    <dimen name="snackbar_text">12</dimen>
+    <dimen name="snackbar_button">11</dimen>
 </resources>

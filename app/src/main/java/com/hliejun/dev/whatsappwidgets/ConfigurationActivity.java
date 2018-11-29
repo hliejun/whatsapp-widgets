@@ -19,12 +19,18 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.hliejun.dev.whatsappwidgets.adapters.SectionsPagerAdapter;
-import com.hliejun.dev.whatsappwidgets.views.LockableViewPager;
+import com.hliejun.dev.whatsappwidgets.fragments.SectionFragment;
+import com.hliejun.dev.whatsappwidgets.interfaces.ContactInterface;
+import com.hliejun.dev.whatsappwidgets.interfaces.OptionsInterface;
+import com.hliejun.dev.whatsappwidgets.interfaces.StylingInterface;
+import com.hliejun.dev.whatsappwidgets.models.Contact;
+import com.hliejun.dev.whatsappwidgets.models.PaletteColor;
 import com.hliejun.dev.whatsappwidgets.models.WidgetData;
+import com.hliejun.dev.whatsappwidgets.views.LockableViewPager;
 
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
-public class ConfigurationActivity extends AppCompatActivity {
+public class ConfigurationActivity extends AppCompatActivity implements ContactInterface, OptionsInterface, StylingInterface {
 
     private static final int[] SECTIONS = {
             R.layout.fragment_splash,
@@ -35,6 +41,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     private static final String PREFS_NAME = "com.hliejun.dev.whatsappwidgets.MediumCallWidget";
     private static final String PREF_PREFIX_KEY = "appwidget_";
+    private static final String STATE_CONFIG_KEY = "configuration";
 
     private static int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
@@ -47,6 +54,10 @@ public class ConfigurationActivity extends AppCompatActivity {
     private Button mNextButton;
     private Button mCreateButton;
 
+    /*** Settings ***/
+
+    WidgetData configuration;
+
     /*** Listeners ***/
 
     private ViewPager.OnPageChangeListener pagingListener = new ViewPager.OnPageChangeListener() {
@@ -56,6 +67,11 @@ public class ConfigurationActivity extends AppCompatActivity {
             mNextButton.setVisibility(position == SECTIONS.length - 1 || position == 0 ? View.GONE : View.VISIBLE);
             mCreateButton.setVisibility(position == SECTIONS.length - 1 ? View.VISIBLE : View.GONE);
             mViewPager.setSwipeable(position != 0);
+
+            SectionFragment currFragment = mSectionsPagerAdapter.getCurrentFragment();
+            if (currFragment != null) {
+                currFragment.onLoad();
+            }
         }
 
         @Override
@@ -133,7 +149,11 @@ public class ConfigurationActivity extends AppCompatActivity {
         // Bind navigation bar
         mNavBar = findViewById(R.id.nav_container);
 
-        // TODO: Restore current fragment saved instance state
+        if (savedInstanceState != null) {
+            configuration = (WidgetData) savedInstanceState.getSerializable(STATE_CONFIG_KEY);
+        } else {
+            configuration = new WidgetData();
+        }
 
         // Find the widget ID from the intent
         /*
@@ -156,17 +176,13 @@ public class ConfigurationActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
-        // TODO: Handle save instance state
-
+        outState.putSerializable(STATE_CONFIG_KEY, configuration);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-
-        // TODO: Handle restore instance state
-
+        configuration = (WidgetData) savedInstanceState.getSerializable(STATE_CONFIG_KEY);
     }
 
     /*** Menu Control ***/
@@ -222,7 +238,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     }
 
-    /*** Interface ***/
+    /*** Getters ***/
 
     public LockableViewPager getPager() {
         return mViewPager;
@@ -230,6 +246,82 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     public FrameLayout getNavBar() {
         return mNavBar;
+    }
+
+    /*** Contact Interface ***/
+
+    @Override
+    public void writeContact(Contact contact) {
+        configuration.setContact(contact);
+    }
+
+    @Override
+    public Contact readContact() {
+        return configuration.getContact();
+    }
+
+    /*** Options Interface ***/
+
+    @Override
+    public void writeLabel(String label) {
+        configuration.setLabel(label);
+    }
+
+    @Override
+    public String readLabel() {
+        return configuration.getLabel();
+    }
+
+    @Override
+    public void writeDescription(String description) {
+        configuration.setDescription(description);
+    }
+
+    @Override
+    public String readDescription() {
+        return configuration.getDescription();
+    }
+
+    @Override
+    public void writeNumberOption(boolean shouldUseNumber) {
+        configuration.setShouldUseNumber(shouldUseNumber);
+    }
+
+    @Override
+    public boolean readNumberOption() {
+        return configuration.isShouldUseNumber();
+    }
+
+    @Override
+    public void writeAvatarOption(boolean shouldUseAvatar) {
+        configuration.setShouldUseAvatar(shouldUseAvatar);
+    }
+
+    @Override
+    public boolean readAvatarOption() {
+        return configuration.isShouldUseAvatar();
+    }
+
+    @Override
+    public void writeLargeTextOption(boolean shouldUseLargeText) {
+        configuration.setShouldUseLargeText(shouldUseLargeText);
+    }
+
+    @Override
+    public boolean readLargeTextOption() {
+        return configuration.isShouldUseLargeText();
+    }
+
+    /*** Styling Interface ***/
+
+    @Override
+    public void writeColor(PaletteColor color) {
+        configuration.setColor(color);
+    }
+
+    @Override
+    public PaletteColor readColor() {
+        return configuration.getColor();
     }
 
 }

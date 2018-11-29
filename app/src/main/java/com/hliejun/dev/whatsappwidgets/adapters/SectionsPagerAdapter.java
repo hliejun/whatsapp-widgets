@@ -4,7 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import android.view.ViewGroup;
+
 import com.hliejun.dev.whatsappwidgets.R;
+import com.hliejun.dev.whatsappwidgets.fragments.SectionFragment;
 import com.hliejun.dev.whatsappwidgets.fragments.SplashFragment;
 import com.hliejun.dev.whatsappwidgets.fragments.ContactFragment;
 import com.hliejun.dev.whatsappwidgets.fragments.OptionsFragment;
@@ -18,6 +21,7 @@ import com.hliejun.dev.whatsappwidgets.fragments.ExampleFragment;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     private int[] sections;
+    private SectionFragment mCurrFragment;
 
     public SectionsPagerAdapter(FragmentManager manager, int[] sections) {
         super(manager);
@@ -45,4 +49,17 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return sections.length;
     }
+
+    @Override
+    public void setPrimaryItem(ViewGroup container, int position, Object object) {
+        super.setPrimaryItem(container, position, object);
+        if (getCurrentFragment() != object) {
+            mCurrFragment = (SectionFragment) object;
+        }
+    }
+
+    public SectionFragment getCurrentFragment() {
+        return mCurrFragment;
+    }
+
 }

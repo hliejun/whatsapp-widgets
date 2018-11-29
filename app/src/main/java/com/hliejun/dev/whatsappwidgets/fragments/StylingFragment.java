@@ -11,10 +11,12 @@ import android.widget.GridView;
 
 import com.hliejun.dev.whatsappwidgets.R;
 import com.hliejun.dev.whatsappwidgets.adapters.PaletteGridAdapter;
+import com.hliejun.dev.whatsappwidgets.interfaces.StylingInterface;
+import com.hliejun.dev.whatsappwidgets.models.PaletteColor;
+
+// TODO: Refactor to cut down common code chunks
 
 public class StylingFragment extends SectionFragment {
-
-    static String styleColor = null;
 
     /*** Listeners */
 
@@ -22,12 +24,13 @@ public class StylingFragment extends SectionFragment {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int index, long id) {
             PaletteGridAdapter adapter = (PaletteGridAdapter) adapterView.getAdapter();
-            String prevColor = adapter.getSelectedColor();
+            String prevColor = adapter.getSelectedColor() != null ? adapter.getSelectedColor().getHex() : null;
             adapter.setSelection(index);
 
-            String currColor = adapter.getSelectedColor();
+            String currColor = adapter.getSelectedColor().getHex();
             if (currColor != null && !currColor.equals(prevColor)) {
-                styleColor = currColor;
+                StylingInterface stylingTransaction = (StylingInterface) getActivity();
+                stylingTransaction.writeColor(adapter.getSelectedColor());
                 adapter.notifyDataSetChanged();
             }
         }
@@ -51,17 +54,11 @@ public class StylingFragment extends SectionFragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
-        // TODO: Save fragment instance state
-
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        // TODO: Restore fragment instance state
-
     }
 
     @Override
@@ -70,6 +67,14 @@ public class StylingFragment extends SectionFragment {
         GridView gridView = inflatedView.findViewById(R.id.section_styling_grid);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(gridItemListener);
+
+        StylingInterface stylingTransaction = (StylingInterface) getActivity();
+        PaletteColor color = stylingTransaction.readColor();
+        if (color != null) {
+            int index = adapter.getColorIndex(color);
+            adapter.setSelection(index);
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -80,9 +85,21 @@ public class StylingFragment extends SectionFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+    }
 
-        // TODO: Handle activity result(s) if applicable
+    @Override
+    public void onLoad() {
+        super.onLoad();
 
+        GridView gridView = getView().findViewById(R.id.section_styling_grid);
+        PaletteGridAdapter adapter = (PaletteGridAdapter) gridView.getAdapter();
+        StylingInterface stylingTransaction = (StylingInterface) getActivity();
+        PaletteColor color = stylingTransaction.readColor();
+        if (color != null) {
+            int index = adapter.getColorIndex(color);
+            adapter.setSelection(index);
+            adapter.notifyDataSetChanged();
+        }
     }
 
 }

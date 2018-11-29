@@ -14,49 +14,33 @@ import android.widget.TextView;
 import android.widget.ImageView;
 
 import com.hliejun.dev.whatsappwidgets.R;
+import com.hliejun.dev.whatsappwidgets.models.PaletteColor;
 
 public class PaletteGridAdapter extends BaseAdapter {
+
     private Context mContext;
 
-    // TODO: Make palette objects and move values to fragment
-
-    final String[] labels = {
-        "Red",
-        "Pink",
-        "Purple",
-        "Lavender",
-        "Indigo",
-        "Blue",
-        "Cyan",
-        "Teal",
-        "Green",
-        "Olive",
-        "Yellow",
-        "Orange",
-        "Brown",
-        "Gray",
-        "Metal"
+    final private PaletteColor[] colors = {
+            new PaletteColor("Red", "#D32F2F"),
+            new PaletteColor("Pink", "#FF4081"),
+            new PaletteColor("Purple", "#AB47BC"),
+            new PaletteColor("Lavender", "#7E57C2"),
+            new PaletteColor("Indigo", "#5C6BC0"),
+            new PaletteColor("Blue", "#1E88E5"),
+            new PaletteColor("Cyan", "#0097A7"),
+            new PaletteColor("Teal", "#009688"),
+            new PaletteColor("Green", "#43A047"),
+            new PaletteColor("Olive", "#827717"),
+            new PaletteColor("Yellow", "#FBC02D"),
+            new PaletteColor("Orange", "#F4511E"),
+            new PaletteColor("Brown", "#8D6E63"),
+            new PaletteColor("Gray", "#9E9E9E"),
+            new PaletteColor("Metal", "#90A4AE")
     };
 
-    final String[] colors = {
-        "#D32F2F",
-        "#FF4081",
-        "#AB47BC",
-        "#7E57C2",
-        "#5C6BC0",
-        "#1E88E5",
-        "#0097A7",
-        "#009688",
-        "#43A047",
-        "#827717",
-        "#FBC02D",
-        "#F4511E",
-        "#8D6E63",
-        "#9E9E9E",
-        "#90A4AE"
-    };
+    // TODO: Consider moving selectionIndex to fragment and use restore/save instance state
 
-    private int selectionIndex = -1;
+    private static int selectionIndex = -1;
 
     public PaletteGridAdapter(Context context) {
         mContext = context;
@@ -86,16 +70,16 @@ public class PaletteGridAdapter extends BaseAdapter {
         if (convertView == null) {
             gridItem = inflater.inflate(R.layout.view_grid_item, null);
         } else {
-            gridItem = (View) convertView;
+            gridItem = convertView;
         }
 
-        TextView textView = (TextView) gridItem.findViewById(R.id.grid_item_label);
-        textView.setText(labels[index]);
+        TextView textView = gridItem.findViewById(R.id.grid_item_label);
+        textView.setText(colors[index].getName());
 
-        ImageView imageView = (ImageView)gridItem.findViewById(R.id.grid_item_preview);
-        imageView.setBackgroundColor(Color.parseColor(colors[index]));
+        ImageView imageView = gridItem.findViewById(R.id.grid_item_preview);
+        imageView.setBackgroundColor(Color.parseColor(colors[index].getHex()));
 
-        ImageView checkView = (ImageView)gridItem.findViewById(R.id.grid_item_check);
+        ImageView checkView = gridItem.findViewById(R.id.grid_item_check);
         checkView.setVisibility(selectionIndex == index ? View.VISIBLE : View.GONE);
 
         return gridItem;
@@ -105,7 +89,18 @@ public class PaletteGridAdapter extends BaseAdapter {
         selectionIndex = index;
     }
 
-    public String getSelectedColor() {
+    public PaletteColor getSelectedColor() {
         return selectionIndex == -1 ? null : colors[selectionIndex];
     }
+
+    public int getColorIndex(PaletteColor color) {
+        for (int index = 0; index < colors.length; index++) {
+            if (color.getHex().equals(colors[index].getHex())) {
+                return index;
+            }
+        }
+
+        return -1;
+    }
+
 }

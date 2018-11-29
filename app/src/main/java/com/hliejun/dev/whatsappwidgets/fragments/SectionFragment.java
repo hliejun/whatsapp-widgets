@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import android.view.View;
 
-import com.hliejun.dev.whatsappwidgets.AsyncFragment;
 import com.hliejun.dev.whatsappwidgets.R;
 
 public class SectionFragment extends AsyncFragment {
@@ -53,9 +52,8 @@ public class SectionFragment extends AsyncFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        // TODO: Call fragment adapter to handle contact selection
-
     }
+
+    public void onLoad() {}
 
 }

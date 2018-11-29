@@ -28,6 +28,8 @@
     <dimen name="text_size_normal">12sp</dimen>
     <dimen name="text_size_small">10sp</dimen>
     <dimen name="text_size_button">11sp</dimen>
+    <dimen name="snackbar_text">12</dimen>
+    <dimen name="snackbar_button">11</dimen>
 
     <!--
 Refer to App Widget Documentation for margin information

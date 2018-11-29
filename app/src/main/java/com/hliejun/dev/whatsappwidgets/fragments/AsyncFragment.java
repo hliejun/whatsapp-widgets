@@ -1,4 +1,4 @@
-package com.hliejun.dev.whatsappwidgets;
+package com.hliejun.dev.whatsappwidgets.fragments;
 
 import android.os.Bundle;
 
@@ -11,7 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 
+import com.hliejun.dev.whatsappwidgets.R;
+
 public abstract class AsyncFragment extends Fragment {
+
     private Bundle mSavedInstanceState;
     private boolean mHasInflated = false;
     private ViewStub mViewStub;
@@ -83,4 +86,5 @@ public abstract class AsyncFragment extends Fragment {
         super.onDetach();
         mHasInflated = false;
     }
+
 }

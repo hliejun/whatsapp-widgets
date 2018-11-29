@@ -48,17 +48,11 @@ public class SplashFragment extends SectionFragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
-        // TODO: Save fragment instance state
-
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        // TODO: Restore fragment instance state
-
     }
 
     @Override
@@ -75,9 +69,11 @@ public class SplashFragment extends SectionFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+    }
 
-        // TODO: Handle activity result(s) if applicable
-
+    @Override
+    public void onLoad() {
+        super.onLoad();
     }
 
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import android.database.Cursor;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -22,17 +23,22 @@ import java.util.List;
 
 import com.hliejun.dev.whatsappwidgets.ConfigurationActivity;
 import com.hliejun.dev.whatsappwidgets.R;
-
+import com.hliejun.dev.whatsappwidgets.interfaces.ContactInterface;
+import com.hliejun.dev.whatsappwidgets.interfaces.OptionsInterface;
 import com.hliejun.dev.whatsappwidgets.views.LockableViewPager;
+import com.hliejun.dev.whatsappwidgets.models.Contact;
+
 import com.wafflecopter.multicontactpicker.ContactResult;
 import com.wafflecopter.multicontactpicker.LimitColumn;
 import com.wafflecopter.multicontactpicker.MultiContactPicker;
 
 public class ContactFragment extends SectionFragment {
 
+    private static final String WHATSAPP_PACKAGE_NAME = "com.whatsapp";
     private static final int CONTACT_PICKER_REQUEST = 1;
     private static final int CONTACT_SEGUE_DELAY = 700;
-    private static final String WHATSAPP_PACKAGE_NAME = "com.whatsapp";
+    public static final int SNACKBAR_SIZE_TEXT = 12;
+    public static final int SNACKBAR_SIZE_BUTTON = 11;
 
     /*** Listeners ***/
 
@@ -71,17 +77,11 @@ public class ContactFragment extends SectionFragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
-        // TODO: Save fragment instance state
-
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        // TODO: Restore fragment instance state
-
     }
 
     @Override
@@ -102,6 +102,11 @@ public class ContactFragment extends SectionFragment {
         if (requestCode == CONTACT_PICKER_REQUEST) {
             handleContactResponse(resultCode, data);
         }
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
     }
 
     /*** Handlers ***/
@@ -125,7 +130,8 @@ public class ContactFragment extends SectionFragment {
         if (resultCode == Activity.RESULT_OK) {
             // Get contact details
             List<ContactResult> results = MultiContactPicker.obtainResult(data);
-            String contactId = results.get(0).getContactID();
+            ContactResult result = results.get(0);
+            String contactId = result.getContactID();
 
             // Get WhatsApp contact
             String[] projection = new String[] { ContactsContract.RawContacts._ID };
@@ -140,8 +146,20 @@ public class ContactFragment extends SectionFragment {
 
             // Handle valid WhatsApp contact
             if (whatsAppContactId != null) {
+                String name = result.getDisplayName();
+                String number = result.getPhoneNumbers().get(0).getNumber();
+                Uri photo = result.getPhoto();
 
-                // TODO: Update selected contact data (ID, name, number, photo (opt))
+                Contact contact = new Contact(whatsAppContactId, name, number, photo);
+                ContactInterface contactTransaction = (ContactInterface) getActivity();
+                if (contactTransaction != null) {
+                    contactTransaction.writeContact(contact);
+                }
+
+                OptionsInterface optionsTransaction = (OptionsInterface) getActivity();
+                if (optionsTransaction != null) {
+                    optionsTransaction.writeLabel(name);
+                }
 
                 final Handler handler = new Handler();
                 handler.postDelayed(advancePage, CONTACT_SEGUE_DELAY);
@@ -167,9 +185,9 @@ public class ContactFragment extends SectionFragment {
 
     private void formatSnackbar(Snackbar snackbar) {
         TextView snackbarTextView = snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
-        snackbarTextView.setTextSize(12);
+        snackbarTextView.setTextSize(SNACKBAR_SIZE_TEXT);
         TextView snackbarActionTextView = snackbar.getView().findViewById( android.support.design.R.id.snackbar_action );
-        snackbarActionTextView.setTextSize(11);
+        snackbarActionTextView.setTextSize(SNACKBAR_SIZE_BUTTON);
     }
 
 }
