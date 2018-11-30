@@ -238,7 +238,7 @@ public class OptionsFragment extends SectionFragment {
         editText.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
-                if(actionId == EditorInfo.IME_ACTION_DONE){
+                if (actionId == EditorInfo.IME_ACTION_DONE){
                     InputMethodManager inputManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                     View focusedView = getActivity().getCurrentFocus();
                     if (inputManager != null && focusedView != null) {

@@ -11,18 +11,17 @@ import android.os.Handler;
 
 import android.provider.ContactsContract;
 
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 
 import android.view.View;
 
 import android.widget.Button;
-import android.widget.TextView;
 
 import java.util.List;
 
-import com.hliejun.dev.whatsappwidgets.ConfigurationActivity;
 import com.hliejun.dev.whatsappwidgets.R;
+import com.hliejun.dev.whatsappwidgets.ConfigurationActivity;
+import com.hliejun.dev.whatsappwidgets.NotificationManager;
 import com.hliejun.dev.whatsappwidgets.interfaces.ContactInterface;
 import com.hliejun.dev.whatsappwidgets.interfaces.OptionsInterface;
 import com.hliejun.dev.whatsappwidgets.views.LockableViewPager;
@@ -34,11 +33,9 @@ import com.wafflecopter.multicontactpicker.MultiContactPicker;
 
 public class ContactFragment extends SectionFragment {
 
-    private static final String WHATSAPP_PACKAGE_NAME = "com.whatsapp";
+    private static final String PACKAGE_NAME_WHATSAPP = "com.whatsapp";
     private static final int CONTACT_PICKER_REQUEST = 1;
     private static final int CONTACT_SEGUE_DELAY = 700;
-    public static final int SNACKBAR_SIZE_TEXT = 12;
-    public static final int SNACKBAR_SIZE_BUTTON = 11;
 
     /*** Listeners ***/
 
@@ -112,6 +109,11 @@ public class ContactFragment extends SectionFragment {
     /*** Handlers ***/
 
     private void handleContactRequest() {
+        ContactInterface contactTransaction = (ContactInterface) getActivity();
+        if (contactTransaction != null) {
+            contactTransaction.writeContact(null);
+        }
+
         int primaryColor = ContextCompat.getColor(getContext(), R.color.colorPrimary);
         new MultiContactPicker.Builder(ContactFragment.this)
                 .setLoadingType(MultiContactPicker.LOAD_SYNC)
@@ -126,7 +128,6 @@ public class ContactFragment extends SectionFragment {
     private void handleContactResponse(int resultCode, Intent data) {
         String whatsAppContactId = null;
 
-        // Complete request
         if (resultCode == Activity.RESULT_OK) {
             // Get contact details
             List<ContactResult> results = MultiContactPicker.obtainResult(data);
@@ -136,7 +137,7 @@ public class ContactFragment extends SectionFragment {
             // Get WhatsApp contact
             String[] projection = new String[] { ContactsContract.RawContacts._ID };
             String selection = ContactsContract.Data.CONTACT_ID + " = ? AND account_type IN (?)";
-            String[] selectionArgs = new String[] { contactId, WHATSAPP_PACKAGE_NAME };
+            String[] selectionArgs = new String[] { contactId, PACKAGE_NAME_WHATSAPP};
             Cursor cursor = getContext().getContentResolver()
                     .query(ContactsContract.RawContacts.CONTENT_URI, projection, selection, selectionArgs, null);
             boolean hasWhatsApp = cursor.moveToNext();
@@ -144,7 +145,7 @@ public class ContactFragment extends SectionFragment {
                 whatsAppContactId = cursor.getString(0);
             }
 
-            // Handle valid WhatsApp contact
+            // Handle WhatsApp contact by validity
             if (whatsAppContactId != null) {
                 String name = result.getDisplayName();
                 String number = result.getPhoneNumbers().get(0).getNumber();
@@ -163,31 +164,22 @@ public class ContactFragment extends SectionFragment {
 
                 final Handler handler = new Handler();
                 handler.postDelayed(advancePage, CONTACT_SEGUE_DELAY);
+            } else {
+                NotificationManager.showSnackbar(
+                        getContext(),
+                        getString(R.string.contact_no_whatsapp),
+                        getString(R.string.contact_retry),
+                        contactListener
+                );
             }
-
-            // Handle invalid WhatsApp contact
-            else {
-                Snackbar snackbar = Snackbar.make(getView(), R.string.contact_no_whatsapp, Snackbar.LENGTH_LONG)
-                        .setAction(R.string.contact_retry, contactListener);
-                formatSnackbar(snackbar);
-                snackbar.show();
-            }
+        } else if (resultCode == Activity.RESULT_CANCELED) {
+            NotificationManager.showSnackbar(
+                    getContext(),
+                    getString(R.string.contact_incomplete),
+                    getString(R.string.contact_retry),
+                    contactListener
+            );
         }
-
-        // Incomplete request
-        else if (resultCode == Activity.RESULT_CANCELED) {
-            Snackbar snackbar = Snackbar.make(getView(), R.string.contact_incomplete, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.contact_retry, contactListener);
-            formatSnackbar(snackbar);
-            snackbar.show();
-        }
-    }
-
-    private void formatSnackbar(Snackbar snackbar) {
-        TextView snackbarTextView = snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
-        snackbarTextView.setTextSize(SNACKBAR_SIZE_TEXT);
-        TextView snackbarActionTextView = snackbar.getView().findViewById( android.support.design.R.id.snackbar_action );
-        snackbarActionTextView.setTextSize(SNACKBAR_SIZE_BUTTON);
     }
 
 }

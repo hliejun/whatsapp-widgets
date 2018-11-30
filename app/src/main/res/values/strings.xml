@@ -16,6 +16,12 @@
     <string name="splash_title">Before we begin...</string>
     <string name="splash_description_whatsapp_portrait">Please ensure that you have WhatsApp installed.</string>
     <string name="splash_description_permissions_portrait">When prompted, please allow setup to read from your contacts.</string>
+    <string name="splash_no_whatsapp">WhatsApp not installed</string>
+    <string name="splash_download">GET APP</string>
+    <string name="splash_no_permission">No permission to read contacts</string>
+    <string name="splash_settings">SETTINGS</string>
+    <string name="splash_permission_title">Permission Required</string>
+    <string name="splash_permission_explanation">In order to link widgets to your WhatsApp contacts, we will first need permission to read contacts from your contact list.</string>
 
     <string name="contact_title">1. Choose Contact</string>
     <string name="contact_subtitle">Who would you like the widget to be linked with?</string>
@@ -41,6 +47,10 @@
     <string name="styling_title">3. Select Widget Style</string>
     <string name="styling_subtitle">Choose a widget color for this contact:</string>
     <string name="styling_grid_item_label">Grid View Item</string>
+
+    <string name="create_no_contact">No contact selected</string>
+    <string name="create_no_label">No label provided</string>
+    <string name="create_fix">FIX</string>
 
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="appwidget_text">EXAMPLE</string>

@@ -98,13 +98,38 @@ public class ConfigurationActivity extends AppCompatActivity implements ContactI
     private View.OnClickListener saveListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            if (configuration.getContact() == null) {
+                NotificationManager.showSnackbar(
+                        view.getContext(),
+                        getString(R.string.create_no_contact),
+                        getString(R.string.create_fix),
+                        getPageBrowseListener(1)
+                );
+            } else if (configuration.getLabel() == null || configuration.getLabel().equals("")) {
+                NotificationManager.showSnackbar(
+                        view.getContext(),
+                        getString(R.string.create_no_label),
+                        getString(R.string.create_fix),
+                        getPageBrowseListener(2)
+                );
+            } else {
 
-            // TODO: Check if contact has been set correctly
-            // TODO: Complete config and create widget with acquired fields (save prefs with widget ID)
-            // TODO: Snackbar display if no contact, with fix option to go to contacts
+                // TODO: Complete config and create widget with acquired fields (save prefs with widget ID)
 
+            }
         }
     };
+
+    /*** Listener Getters ***/
+
+    private View.OnClickListener getPageBrowseListener(final int index) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(index, true);
+            }
+        };
+    }
 
     /*** Lifecycle ***/
 
@@ -155,6 +180,8 @@ public class ConfigurationActivity extends AppCompatActivity implements ContactI
             configuration = new WidgetData();
         }
 
+        // TODO: Adapt for widget config
+
         // Find the widget ID from the intent
         /*
         Intent intent = getIntent();
@@ -199,14 +226,14 @@ public class ConfigurationActivity extends AppCompatActivity implements ContactI
         int id = item.getItemId();
         if (id == R.id.action_reset) {
 
-            // TODO: Reset configuration fields for current widget
+            // TODO: Dialog prompt, reset configuration and navigate to splash
 
             return true;
         }
 
         if (id == R.id.action_settings) {
 
-            // TODO: Go to application settings (show/hide launcher icon, etc.)
+            // TODO: Go to application settings intent + add settings for leanback app in manifest
 
             return true;
         }
