@@ -20,23 +20,26 @@ public class NotificationManager {
     public static void showDialog(Context context,
                                   String title,
                                   String message,
+                                  String acceptLabel,
                                   DialogInterface.OnClickListener acceptListener,
+                                  String neglectLabel,
                                   DialogInterface.OnClickListener neglectListener,
-                                  DialogInterface.OnCancelListener cancelListener) {
+                                  String cancelLabel,
+                                  DialogInterface.OnClickListener cancelListener) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(context)
                 .setTitle(title)
                 .setMessage(message);
 
-        if (acceptListener != null) {
-            dialog.setPositiveButton(android.R.string.ok, acceptListener);
+        if (acceptLabel != null && acceptListener != null) {
+            dialog.setPositiveButton(acceptLabel, acceptListener);
         }
 
-        if (neglectListener != null) {
-            dialog.setNegativeButton(android.R.string.cancel, neglectListener);
+        if (neglectLabel != null && neglectListener != null) {
+            dialog.setNegativeButton(neglectLabel, neglectListener);
         }
 
         if (cancelListener != null) {
-            dialog.setOnCancelListener(cancelListener);
+            dialog.setNeutralButton(cancelLabel, cancelListener);
         }
 
         dialog.create().show();

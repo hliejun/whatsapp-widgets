@@ -89,6 +89,10 @@ public class PaletteGridAdapter extends BaseAdapter {
         selectionIndex = index;
     }
 
+    public static void resetSelection() {
+        selectionIndex = -1;
+    }
+
     public PaletteColor getSelectedColor() {
         return selectionIndex == -1 ? null : colors[selectionIndex];
     }

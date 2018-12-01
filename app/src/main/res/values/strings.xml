@@ -12,6 +12,13 @@
     <string name="button_next">NEXT</string>
     <string name="button_create">CREATE</string>
 
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">CANCEL</string>
+
+    <string name="menu_reset_title">Reset Configuration</string>
+    <string name="menu_reset_confirmation">You are about to clear all configuration in this setup and return to the start page. Are you sure?</string>
+    <string name="menu_reset">RESET</string>
+
     <string name="splash_heading">Widget Configuration</string>
     <string name="splash_title">Before we begin...</string>
     <string name="splash_description_whatsapp_portrait">Please ensure that you have WhatsApp installed.</string>
@@ -56,4 +63,11 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
+
+    <string name="medium_widget_overline">WHATSAPP CONTACT</string>
+    <string name="medium_widget_label_default">John Doe Smith</string>
+    <string name="medium_widget_description_default">John Doe Smith of the House Targaryen, First of His Name, the Unburnt, King of the Andals and the First Men, Khaleesi of the Great Grass Sea, Breaker of Chains, and Father of Dragons</string>
+    <string name="medium_widget_voice">VOICE</string>
+    <string name="medium_widget_video">VIDEO</string>
+    <string name="medium_widget_chat">CHAT</string>
 </resources>

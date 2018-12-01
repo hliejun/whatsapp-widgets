@@ -52,4 +52,9 @@ public class ExampleFragment extends SectionFragment {
         super.onLoad();
     }
 
+    @Override
+    public void reset() {
+        super.reset();
+    }
+
 }

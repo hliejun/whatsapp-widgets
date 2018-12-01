@@ -2,22 +2,30 @@ package com.hliejun.dev.whatsappwidgets;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+
 import android.content.Context;
+
 import android.widget.RemoteViews;
+
+import com.hliejun.dev.whatsappwidgets.models.WidgetData;
+
+// TODO: Replace preview image of widget
 
 /**
  * Implementation of App Widget functionality.
- * App Widget Configuration implemented in {@link MediumCallWidgetConfigureActivity MediumCallWidgetConfigureActivity}
+ * App Widget Configuration implemented in {@link ConfigurationActivity ConfigurationActivity}
  */
-public class MediumCallWidget extends AppWidgetProvider {
+public class MediumWidget extends AppWidgetProvider {
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
+    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
+        WidgetData data = ConfigurationActivity.loadWidgetPref(context, appWidgetId);
 
-        CharSequence widgetText = MediumCallWidgetConfigureActivity.loadTitlePref(context, appWidgetId);
         // Construct the RemoteViews object
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.medium_call_widget);
-        views.setTextViewText(R.id.appwidget_text, widgetText);
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.medium_widget);
+
+        // TODO: Relink view components and data
+//        views.setTextViewText(R.id.appwidget_text, "STATIC TEXT");
+
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -35,7 +43,7 @@ public class MediumCallWidget extends AppWidgetProvider {
     public void onDeleted(Context context, int[] appWidgetIds) {
         // When the user deletes the widget, delete the preference associated with it.
         for (int appWidgetId : appWidgetIds) {
-            MediumCallWidgetConfigureActivity.deleteTitlePref(context, appWidgetId);
+            ConfigurationActivity.deleteWidgetPref(context, appWidgetId);
         }
     }
 
@@ -48,5 +56,6 @@ public class MediumCallWidget extends AppWidgetProvider {
     public void onDisabled(Context context) {
         // Enter relevant functionality for when the last widget is disabled
     }
+
 }
 

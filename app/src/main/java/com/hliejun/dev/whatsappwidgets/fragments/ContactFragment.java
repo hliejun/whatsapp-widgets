@@ -106,6 +106,11 @@ public class ContactFragment extends SectionFragment {
         super.onLoad();
     }
 
+    @Override
+    public void reset() {
+        super.reset();
+    }
+
     /*** Handlers ***/
 
     private void handleContactRequest() {

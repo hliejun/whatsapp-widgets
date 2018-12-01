@@ -102,4 +102,26 @@ public class StylingFragment extends SectionFragment {
         }
     }
 
+    @Override
+    public void reset() {
+        super.reset();
+
+        PaletteGridAdapter.resetSelection();
+
+        View fragmentView = getView();
+        if (fragmentView == null) {
+            return;
+        }
+
+        GridView gridView = fragmentView.findViewById(R.id.section_styling_grid);
+        if (gridView == null) {
+            return;
+        }
+
+        PaletteGridAdapter adapter = (PaletteGridAdapter) gridView.getAdapter();
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
+    }
+
 }

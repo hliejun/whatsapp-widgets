@@ -45,7 +45,10 @@ public class SplashFragment extends SectionFragment {
                         getContext(),
                         getString(R.string.splash_permission_title),
                         getString(R.string.splash_permission_explanation),
+                        getString(R.string.dialog_ok),
                         permissionListener,
+                        null,
+                        null,
                         null,
                         null
                 );
@@ -131,6 +134,11 @@ public class SplashFragment extends SectionFragment {
     @Override
     public void onLoad() {
         super.onLoad();
+    }
+
+    @Override
+    public void reset() {
+        super.reset();
     }
 
     /*** Auxiliary ***/

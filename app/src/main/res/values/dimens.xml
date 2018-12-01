@@ -1,5 +1,5 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- views -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">12dp</dimen>
     <dimen name="activity_margin_half">8dp</dimen>
@@ -22,18 +22,27 @@
     <dimen name="button_padding_small">8dp</dimen>
     <dimen name="cardview_toolbar_spacer">16dp</dimen>
     <dimen name="grid_item_padding">10dp</dimen>
+
+    <!-- text -->
     <dimen name="text_size_heading">16sp</dimen>
     <dimen name="text_size_title">14sp</dimen>
     <dimen name="text_size_subtitle">12sp</dimen>
     <dimen name="text_size_normal">12sp</dimen>
     <dimen name="text_size_small">10sp</dimen>
     <dimen name="text_size_button">11sp</dimen>
+
+    <!-- snackbar -->
     <dimen name="snackbar_text">12</dimen>
     <dimen name="snackbar_button">11</dimen>
 
-    <!--
-Refer to App Widget Documentation for margin information
-http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
-    -->
+    <!-- widget -->
     <dimen name="widget_margin">8dp</dimen>
+    <dimen name="widget_margin_half">4dp</dimen>
+    <dimen name="widget_margin_small">2dp</dimen>
+    <dimen name="widget_glyph_size">20dp</dimen>
+    <dimen name="widget_button_width">70dp</dimen>
+
+    <!-- medium widget text -->
+    <dimen name="medium_widget_text_overline">8sp</dimen>
+    <dimen name="medium_widget_text_label">18sp</dimen>
 </resources>

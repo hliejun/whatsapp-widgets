@@ -56,4 +56,6 @@ public class SectionFragment extends AsyncFragment {
 
     public void onLoad() {}
 
+    public void reset() {}
+
 }

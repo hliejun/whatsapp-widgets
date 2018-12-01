@@ -156,6 +156,42 @@ public class OptionsFragment extends SectionFragment {
         largeTextSwitch.setChecked(shouldUseLargeText);
     }
 
+    @Override
+    public void reset() {
+        super.reset();
+
+        View fragmentView = getView();
+
+        if (fragmentView == null) {
+            return;
+        }
+
+        EditText labelEditText = fragmentView.findViewById(R.id.section_options_label);
+        if (labelEditText != null) {
+            labelEditText.setText("");
+        }
+
+        EditText descriptionEditText = fragmentView.findViewById(R.id.section_options_description);
+        if (descriptionEditText != null) {
+            descriptionEditText.setText("");
+        }
+
+        SwitchCompat numberSwitch = fragmentView.findViewById(R.id.section_options_number_toggle);
+        if (numberSwitch != null) {
+            numberSwitch.setChecked(false);
+        }
+
+        SwitchCompat avatarSwitch = fragmentView.findViewById(R.id.section_options_avatar_toggle);
+        if (avatarSwitch != null) {
+            avatarSwitch.setChecked(false);
+        }
+
+        SwitchCompat largeTextSwitch = fragmentView.findViewById(R.id.section_options_large_toggle);
+        if (largeTextSwitch != null) {
+            largeTextSwitch.setChecked(false);
+        }
+    }
+
     /*** Listener Setters ***/
 
     private void setKeyDismiss(final EditText editText) {

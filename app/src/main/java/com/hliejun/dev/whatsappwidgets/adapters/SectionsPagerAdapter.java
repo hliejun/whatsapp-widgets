@@ -62,4 +62,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         return mCurrFragment;
     }
 
+    public void reloadFragments() {
+        for (int index = 0; index < sections.length; index++) {
+            SectionFragment fragment = (SectionFragment) getItem(index);
+            if (fragment != null) {
+                fragment.reset();
+            }
+        }
+    }
+
 }
