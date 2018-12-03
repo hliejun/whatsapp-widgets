@@ -9,7 +9,7 @@ public class Contact implements Serializable {
     private String whatsAppId;
     private String name;
     private String number;
-    private Uri photo;
+    private String photo;
 
     /*** Constructors ***/
 
@@ -22,7 +22,7 @@ public class Contact implements Serializable {
 
     public Contact(String whatsAppId, String name, String number, Uri photo) {
         this(whatsAppId, name, number);
-        this.photo = photo;
+        this.photo = photo == null ? null : photo.toString();
     }
 
     /*** Setters ***/
@@ -40,7 +40,7 @@ public class Contact implements Serializable {
     }
 
     public void setPhoto(Uri photo) {
-        this.photo = photo;
+        this.photo = photo == null ? null : photo.toString();
     }
 
     /*** Getters ***/
@@ -58,7 +58,7 @@ public class Contact implements Serializable {
     }
 
     public Uri getPhoto() {
-        return photo;
+        return photo == null ? null : Uri.parse(photo);
     }
 
     /*** Auxiliary ***/
@@ -79,14 +79,14 @@ public class Contact implements Serializable {
             count += 1;
         }
 
-        return initials.toString();
+        return initials.toString().toUpperCase();
     }
 
     public String toString() {
         return "Contact [id=" + whatsAppId
                     + ", name=" + name
                     + ", number=" + number
-                    + ", photo=" + photo.toString()
+                    + ", photo=" + photo
                     + "]";
     }
 

@@ -29,7 +29,7 @@ public class StylingFragment extends SectionFragment {
             new PaletteColor("Teal", "#009688"),
             new PaletteColor("Green", "#43A047"),
             new PaletteColor("Olive", "#827717"),
-            new PaletteColor("Yellow", "#FBC02D"),
+            new PaletteColor("Yellow", "#FBC02D", PaletteColor.ColorType.LIGHT),
             new PaletteColor("Orange", "#F4511E"),
             new PaletteColor("Brown", "#8D6E63"),
             new PaletteColor("Gray", "#9E9E9E"),
