@@ -28,17 +28,11 @@ public class SectionFragment extends AsyncFragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
-        // TODO: Save fragment instance state
-
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        // TODO: Restore fragment instance state
-
     }
 
     @Override

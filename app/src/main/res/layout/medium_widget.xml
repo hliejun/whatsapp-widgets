@@ -4,16 +4,18 @@
     android:background="@drawable/cs_card">
     
     <FrameLayout
+        android:id="@+id/medium_widget_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary">
 
         <Button
+            android:id="@+id/medium_widget_settings"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="top|end"
             android:background="@android:color/transparent"
-            android:layout_marginTop="@dimen/widget_margin_half"
             android:layout_marginRight="@dimen/widget_margin"
             android:layout_marginEnd="@dimen/widget_margin"
             android:drawableRight="@drawable/ic_more_widget"
@@ -24,20 +26,54 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/medium_widget_overline"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/widget_margin"
-                android:layout_marginBottom="@dimen/widget_margin_half"
-                android:layout_marginLeft="@dimen/widget_margin"
-                android:layout_marginStart="@dimen/widget_margin"
-                android:layout_marginRight="@dimen/widget_margin"
-                android:layout_marginEnd="@dimen/widget_margin"
-                android:text="@string/medium_widget_overline"
-                android:textSize="@dimen/medium_widget_text_overline"
-                android:textColor="@color/colorPrimaryText"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/medium_widget_overline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/widget_margin"
+                    android:layout_marginBottom="@dimen/widget_margin_half"
+                    android:layout_marginLeft="@dimen/widget_margin"
+                    android:layout_marginStart="@dimen/widget_margin"
+                    android:layout_marginRight="@dimen/widget_margin_half"
+                    android:layout_marginEnd="@dimen/widget_margin_half"
+                    android:text="@string/medium_widget_overline"
+                    android:textSize="@dimen/medium_widget_text_overline"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/medium_widget_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/widget_margin"
+                    android:layout_marginBottom="@dimen/widget_margin_half"
+                    android:layout_marginLeft="@dimen/widget_margin_half"
+                    android:layout_marginStart="@dimen/widget_margin_half"
+                    android:layout_marginRight="@dimen/widget_margin_large"
+                    android:layout_marginEnd="@dimen/widget_margin_large"
+                    android:text="@string/medium_widget_number"
+                    android:textSize="@dimen/medium_widget_text_overline"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textStyle="bold"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit ="marquee_forever"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:duplicateParentState="true"
+                    android:scrollHorizontally="true">
+                    <requestFocus
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:duplicateParentState="true" />
+                </TextView>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,15 +81,41 @@
                 android:layout_weight="0.5"
                 android:orientation="horizontal">
 
-                <ImageView
+                <RelativeLayout
+                    android:id="@+id/medium_widget_avatar_container"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
                     android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/widget_margin"
+                    android:layout_marginBottom="@dimen/widget_margin"
                     android:layout_marginLeft="@dimen/widget_margin"
-                    android:layout_marginStart="@dimen/widget_margin"
-                    android:scaleType="fitCenter"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:layout_marginStart="@dimen/widget_margin">
+
+                    <ImageView
+                        android:id="@+id/medium_widget_avatar"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:src="@mipmap/ic_launcher_round" />
+
+                    <TextView
+                        android:id="@+id/medium_widget_initials"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/medium_widget_initials_default"
+                        android:textSize="@dimen/medium_widget_text_initials"
+                        android:textStyle="bold"
+                        android:layout_alignTop="@+id/medium_widget_avatar"
+                        android:layout_alignLeft="@+id/medium_widget_avatar"
+                        android:layout_alignStart="@+id/medium_widget_avatar"
+                        android:layout_alignRight="@+id/medium_widget_avatar"
+                        android:layout_alignEnd="@+id/medium_widget_avatar"
+                        android:layout_alignBottom="@+id/medium_widget_avatar"
+                        android:gravity="center" />
+
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -81,7 +143,13 @@
                         android:marqueeRepeatLimit ="marquee_forever"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
-                        android:scrollHorizontally="true" />
+                        android:duplicateParentState="true"
+                        android:scrollHorizontally="true">
+                        <requestFocus
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:duplicateParentState="true" />
+                    </TextView>
 
                     <TextView
                         android:id="@+id/medium_widget_description"
@@ -93,7 +161,7 @@
                         android:layout_marginRight="@dimen/widget_margin"
                         android:layout_marginEnd="@dimen/widget_margin"
                         android:text="@string/medium_widget_description_default"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/medium_widget_text_description"
                         android:textColor="@color/colorHintText"
                         android:textStyle="bold"
                         android:singleLine="true"
@@ -101,7 +169,13 @@
                         android:marqueeRepeatLimit ="marquee_forever"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
-                        android:scrollHorizontally="true" />
+                        android:duplicateParentState="true"
+                        android:scrollHorizontally="true">
+                        <requestFocus
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:duplicateParentState="true" />
+                    </TextView>
 
                 </LinearLayout>
 
@@ -124,13 +198,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.333">
                     <Button
+                        android:id="@+id/medium_widget_voice"
+                        style="@style/Widget.AppCompat.Button"
                         android:layout_width="@dimen/widget_button_width"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
                         android:text="@string/medium_widget_voice"
                         android:textColor="@color/colorPrimaryText"
-                        android:textSize="@dimen/text_size_button"
+                        android:textSize="@dimen/medium_widget_text_button"
                         android:ellipsize="end"
                         android:drawableTop="@drawable/ic_phone_widget" />
                 </FrameLayout>
@@ -140,13 +216,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.333">
                     <Button
+                        android:id="@+id/medium_widget_video"
+                        style="@style/Widget.AppCompat.Button"
                         android:layout_width="@dimen/widget_button_width"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
                         android:text="@string/medium_widget_video"
                         android:textColor="@color/colorPrimaryText"
-                        android:textSize="@dimen/text_size_button"
+                        android:textSize="@dimen/medium_widget_text_button"
                         android:ellipsize="end"
                         android:drawableTop="@drawable/ic_video_widget" />
                 </FrameLayout>
@@ -156,13 +234,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.333">
                     <Button
+                        android:id="@+id/medium_widget_chat"
+                        style="@style/Widget.AppCompat.Button"
                         android:layout_width="@dimen/widget_button_width"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
                         android:text="@string/medium_widget_chat"
                         android:textColor="@color/colorPrimaryText"
-                        android:textSize="@dimen/text_size_button"
+                        android:textSize="@dimen/medium_widget_text_button"
                         android:ellipsize="end"
                         android:drawableTop="@drawable/ic_chat_widget" />
                 </FrameLayout>

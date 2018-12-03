@@ -11,8 +11,6 @@
     android:background="?attr/colorPrimary"
     tools:context=".ConfigurationActivity$SectionFragment">
 
-    <!-- TODO: Check and ID all views -->
-
     <TextView
         android:id="@+id/section_title"
         android:layout_width="wrap_content"
@@ -75,7 +73,7 @@
                 app:met_primaryColor="@color/colorPrimaryText"
                 app:met_errorColor="@color/colorWarning"
                 app:met_singleLineEllipsis="true"
-                app:met_maxCharacters="30"
+                app:met_maxCharacters="15"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +96,7 @@
                 app:met_primaryColor="@color/colorPrimaryText"
                 app:met_errorColor="@color/colorWarning"
                 app:met_singleLineEllipsis="true"
-                app:met_maxCharacters="40"
+                app:met_maxCharacters="30"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -148,6 +146,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"
+                    app:theme="@style/MultiContactPicker.Azure"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -200,6 +199,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"
+                    app:theme="@style/MultiContactPicker.Azure"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -253,6 +253,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"
+                    app:theme="@style/MultiContactPicker.Azure"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"

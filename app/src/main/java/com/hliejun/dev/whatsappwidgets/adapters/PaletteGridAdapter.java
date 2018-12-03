@@ -20,30 +20,13 @@ public class PaletteGridAdapter extends BaseAdapter {
 
     private Context mContext;
 
-    final private PaletteColor[] colors = {
-            new PaletteColor("Red", "#D32F2F"),
-            new PaletteColor("Pink", "#FF4081"),
-            new PaletteColor("Purple", "#AB47BC"),
-            new PaletteColor("Lavender", "#7E57C2"),
-            new PaletteColor("Indigo", "#5C6BC0"),
-            new PaletteColor("Blue", "#1E88E5"),
-            new PaletteColor("Cyan", "#0097A7"),
-            new PaletteColor("Teal", "#009688"),
-            new PaletteColor("Green", "#43A047"),
-            new PaletteColor("Olive", "#827717"),
-            new PaletteColor("Yellow", "#FBC02D"),
-            new PaletteColor("Orange", "#F4511E"),
-            new PaletteColor("Brown", "#8D6E63"),
-            new PaletteColor("Gray", "#9E9E9E"),
-            new PaletteColor("Metal", "#90A4AE")
-    };
-
-    // TODO: Consider moving selectionIndex to fragment and use restore/save instance state
+    private PaletteColor[] colors;
 
     private static int selectionIndex = -1;
 
-    public PaletteGridAdapter(Context context) {
+    public PaletteGridAdapter(Context context, PaletteColor[] colors) {
         mContext = context;
+        this.colors = colors;
     }
 
     @Override
@@ -81,6 +64,7 @@ public class PaletteGridAdapter extends BaseAdapter {
 
         ImageView checkView = gridItem.findViewById(R.id.grid_item_check);
         checkView.setVisibility(selectionIndex == index ? View.VISIBLE : View.GONE);
+        checkView.setImageResource(colors[index].isLightColor() ? R.drawable.ic_check_black : R.drawable.ic_check);
 
         return gridItem;
     }

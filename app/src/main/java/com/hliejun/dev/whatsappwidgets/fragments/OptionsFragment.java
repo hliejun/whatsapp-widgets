@@ -28,8 +28,6 @@ import com.hliejun.dev.whatsappwidgets.interfaces.OptionsInterface;
 import com.hliejun.dev.whatsappwidgets.models.Contact;
 import com.hliejun.dev.whatsappwidgets.views.LockableViewPager;
 
-// TODO: Refactor to cut down common code chunks
-
 public class OptionsFragment extends SectionFragment {
 
     /*** Lifecycle ***/
@@ -199,11 +197,7 @@ public class OptionsFragment extends SectionFragment {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_UP) {
-                    InputMethodManager inputManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    View focusedView = getActivity().getCurrentFocus();
-                    if (inputManager != null && focusedView != null) {
-                        inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(), 0);
-                    }
+                    hideKeyboard();
                     editText.clearFocus();
                 }
 
@@ -216,12 +210,7 @@ public class OptionsFragment extends SectionFragment {
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
-                InputMethodManager inputManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                View focusedView = getActivity().getCurrentFocus();
-                if (inputManager != null && focusedView != null) {
-                    inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(), 0);
-                }
-
+                hideKeyboard();
                 for (EditText editText : editTexts) {
                     if (editText != null) {
                         editText.clearFocus();
@@ -237,12 +226,7 @@ public class OptionsFragment extends SectionFragment {
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-                InputMethodManager inputManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                View focusedView = getActivity().getCurrentFocus();
-                if (inputManager != null && focusedView != null) {
-                    inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(), 0);
-                }
-
+                hideKeyboard();
                 for (EditText editText : editTexts) {
                     if (editText != null) {
                         editText.clearFocus();
@@ -252,12 +236,7 @@ public class OptionsFragment extends SectionFragment {
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                InputMethodManager inputManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                View focusedView = getActivity().getCurrentFocus();
-                if (inputManager != null && focusedView != null) {
-                    inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(), 0);
-                }
-
+                hideKeyboard();
                 for (EditText editText : editTexts) {
                     if (editText != null) {
                         editText.clearFocus();
@@ -275,17 +254,23 @@ public class OptionsFragment extends SectionFragment {
             @Override
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE){
-                    InputMethodManager inputManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    View focusedView = getActivity().getCurrentFocus();
-                    if (inputManager != null && focusedView != null) {
-                        inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(), 0);
-                    }
+                    hideKeyboard();
                     editText.clearFocus();
                 }
 
                 return false;
             }
         });
+    }
+
+    /*** Auxiliary ***/
+
+    private void hideKeyboard() {
+        InputMethodManager inputManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        View focusedView = getActivity().getCurrentFocus();
+        if (inputManager != null && focusedView != null) {
+            inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(), 0);
+        }
     }
 
     private void bindText(final EditText editText) {

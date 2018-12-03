@@ -21,15 +21,23 @@
     <dimen name="button_padding_horizontal">12dp</dimen>
     <dimen name="button_padding_small">8dp</dimen>
     <dimen name="cardview_toolbar_spacer">16dp</dimen>
+    <dimen name="progress_bar">48dp</dimen>
+
+    <!-- grid -->
+    <dimen name="grid_fading_edge">10dp</dimen>
+    <dimen name="grid_item">60dp</dimen>
+    <dimen name="grid_item_radius">30dp</dimen>
     <dimen name="grid_item_padding">10dp</dimen>
+    <dimen name="grid_item_check">30dp</dimen>
+    <dimen name="grid_column_width">90dp</dimen>
 
     <!-- text -->
-    <dimen name="text_size_heading">16sp</dimen>
-    <dimen name="text_size_title">14sp</dimen>
-    <dimen name="text_size_subtitle">12sp</dimen>
-    <dimen name="text_size_normal">12sp</dimen>
-    <dimen name="text_size_small">10sp</dimen>
-    <dimen name="text_size_button">11sp</dimen>
+    <dimen name="text_size_heading">18sp</dimen>
+    <dimen name="text_size_title">16sp</dimen>
+    <dimen name="text_size_subtitle">14sp</dimen>
+    <dimen name="text_size_normal">14sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_button">13sp</dimen>
 
     <!-- snackbar -->
     <dimen name="snackbar_text">12</dimen>
@@ -37,12 +45,33 @@
 
     <!-- widget -->
     <dimen name="widget_margin">8dp</dimen>
+    <dimen name="widget_margin_large">18dp</dimen>
     <dimen name="widget_margin_half">4dp</dimen>
     <dimen name="widget_margin_small">2dp</dimen>
     <dimen name="widget_glyph_size">20dp</dimen>
     <dimen name="widget_button_width">70dp</dimen>
 
     <!-- medium widget text -->
-    <dimen name="medium_widget_text_overline">8sp</dimen>
+    <dimen name="medium_widget_text_overline">9sp</dimen>
+    <dimen name="medium_widget_text_overline_large">10sp</dimen>
+    <dimen name="medium_widget_text_initials">14sp</dimen>
+    <dimen name="medium_widget_text_initials_large">16sp</dimen>
     <dimen name="medium_widget_text_label">18sp</dimen>
+    <dimen name="medium_widget_text_label_large">20sp</dimen>
+    <dimen name="medium_widget_text_description">12sp</dimen>
+    <dimen name="medium_widget_text_description_large">14sp</dimen>
+    <dimen name="medium_widget_text_button">11sp</dimen>
+    <dimen name="medium_widget_text_button_large">13sp</dimen>
+
+    <!-- medium widget text (numerical) -->
+    <dimen name="medium_widget_text_overline_num">9px</dimen>
+    <dimen name="medium_widget_text_overline_large_num">10px</dimen>
+    <dimen name="medium_widget_text_initials_num">14px</dimen>
+    <dimen name="medium_widget_text_initials_large_num">16px</dimen>
+    <dimen name="medium_widget_text_label_num">18px</dimen>
+    <dimen name="medium_widget_text_label_large_num">20px</dimen>
+    <dimen name="medium_widget_text_description_num">12px</dimen>
+    <dimen name="medium_widget_text_description_large_num">14px</dimen>
+    <dimen name="medium_widget_text_button_num">11px</dimen>
+    <dimen name="medium_widget_text_button_large_num">13px</dimen>
 </resources>

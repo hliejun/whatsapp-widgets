@@ -49,6 +49,10 @@ public class PaletteColor implements Serializable {
         return hex;
     }
 
+    public int getInt() {
+        return getIntColor(hex);
+    }
+
     public ColorType getType() {
         return type;
     }
@@ -64,6 +68,27 @@ public class PaletteColor implements Serializable {
                   + ", hex=" + hex
                   + ", type=" + type.toString()
                   + "]";
+    }
+
+    public static int getIntColor(String hex) {
+        String alphaHex;
+
+        if (hex == null || hex.equals("")) {
+            alphaHex = "00000000";
+        } else {
+            alphaHex = hex.replace("#", "");
+            if (alphaHex.length() == 6) {
+                alphaHex = "FF" + alphaHex;
+            }
+            if (alphaHex.length() != 8) {
+                alphaHex = "00000000";
+            }
+        }
+
+        int color = (Integer.parseInt( alphaHex.substring( 0,2 ), 16) << 24)
+                + Integer.parseInt( alphaHex.substring( 2 ), 16);
+
+        return color;
     }
 
 }

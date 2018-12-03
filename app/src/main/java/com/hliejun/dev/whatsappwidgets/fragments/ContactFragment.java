@@ -1,11 +1,16 @@
 package com.hliejun.dev.whatsappwidgets.fragments;
 
 import android.app.Activity;
+
+import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
 
 import android.database.Cursor;
 
 import android.net.Uri;
+
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -132,6 +137,7 @@ public class ContactFragment extends SectionFragment {
 
     private void handleContactResponse(int resultCode, Intent data) {
         String whatsAppContactId = null;
+        String whatsAppNumber = null;
 
         if (resultCode == Activity.RESULT_OK) {
             // Get contact details
@@ -140,23 +146,26 @@ public class ContactFragment extends SectionFragment {
             String contactId = result.getContactID();
 
             // Get WhatsApp contact
-            String[] projection = new String[] { ContactsContract.RawContacts._ID };
-            String selection = ContactsContract.Data.CONTACT_ID + " = ? AND account_type IN (?)";
-            String[] selectionArgs = new String[] { contactId, PACKAGE_NAME_WHATSAPP};
+            String[] projection = new String[] { ContactsContract.Data.RAW_CONTACT_ID, ContactsContract.CommonDataKinds.Phone.NUMBER };
+            String selection = ContactsContract.Data.CONTACT_ID + " = ? AND "
+                    + ContactsContract.Data.MIMETYPE + "='"
+                    + ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE
+                    + "' AND " + ContactsContract.RawContacts.ACCOUNT_TYPE + "= ?";
+            String[] selectionArgs = new String[] { contactId, PACKAGE_NAME_WHATSAPP };
             Cursor cursor = getContext().getContentResolver()
-                    .query(ContactsContract.RawContacts.CONTENT_URI, projection, selection, selectionArgs, null);
+                    .query(ContactsContract.Data.CONTENT_URI, projection, selection, selectionArgs, null);
             boolean hasWhatsApp = cursor.moveToNext();
             if (hasWhatsApp) {
-                whatsAppContactId = cursor.getString(0);
+                whatsAppContactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Data.RAW_CONTACT_ID));
+                whatsAppNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
             }
 
             // Handle WhatsApp contact by validity
-            if (whatsAppContactId != null) {
+            if (whatsAppContactId != null && whatsAppNumber != null) {
                 String name = result.getDisplayName();
-                String number = result.getPhoneNumbers().get(0).getNumber();
-                Uri photo = result.getPhoto();
 
-                Contact contact = new Contact(whatsAppContactId, name, number, photo);
+                Uri photoUri = getPhotoUri(contactId, getContext());
+                Contact contact = new Contact(whatsAppContactId, name, whatsAppNumber, photoUri);
                 ContactInterface contactTransaction = (ContactInterface) getActivity();
                 if (contactTransaction != null) {
                     contactTransaction.writeContact(contact);
@@ -185,6 +194,33 @@ public class ContactFragment extends SectionFragment {
                     contactListener
             );
         }
+    }
+
+    private Uri getPhotoUri(String id, Context context) {
+        long contactId = Long.parseLong(id);
+        ContentResolver contentResolver = context.getContentResolver();
+
+        try {
+            Cursor cursor = contentResolver.query(ContactsContract.Data.CONTENT_URI, null,
+                    ContactsContract.Data.CONTACT_ID
+                            + "=" + contactId + " AND " + ContactsContract.Data.MIMETYPE + "='"
+                            + ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE + "'",
+                    null, null);
+            if (cursor != null) {
+                if (!cursor.moveToFirst()) {
+                    return null;
+                }
+            } else {
+                return null;
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return null;
+        }
+
+        Uri person = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, contactId);
+
+        return Uri.withAppendedPath(person, ContactsContract.Contacts.Photo.DISPLAY_PHOTO);
     }
 
 }

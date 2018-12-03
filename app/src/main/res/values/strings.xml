@@ -65,8 +65,10 @@
     <string name="add_widget">Add widget</string>
 
     <string name="medium_widget_overline">WHATSAPP CONTACT</string>
+    <string name="medium_widget_initials_default">JDS</string>
     <string name="medium_widget_label_default">John Doe Smith</string>
     <string name="medium_widget_description_default">John Doe Smith of the House Targaryen, First of His Name, the Unburnt, King of the Andals and the First Men, Khaleesi of the Great Grass Sea, Breaker of Chains, and Father of Dragons</string>
+    <string name="medium_widget_number">(PHONE NUMBER)</string>
     <string name="medium_widget_voice">VOICE</string>
     <string name="medium_widget_video">VIDEO</string>
     <string name="medium_widget_chat">CHAT</string>

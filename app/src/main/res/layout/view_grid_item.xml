@@ -9,11 +9,6 @@
     android:orientation="vertical"
     android:padding="@dimen/grid_item_padding">
 
-    <!-- TODO: Add check view layer -->
-    <!-- TODO: Extract sizes to dimens -->
-    <!-- TODO: Check and ID all views -->
-    <!-- TODO: Create landscape version (grid sizing) -->
-
     <LinearLayout
         android:id="@+id/linear_layout"
         android:layout_width="wrap_content"
@@ -21,11 +16,9 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.CardView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            app:cardCornerRadius="30dp">
-
-            <!-- TODO: Change check source and sizing -->
+            android:layout_width="@dimen/grid_item"
+            android:layout_height="@dimen/grid_item"
+            app:cardCornerRadius="@dimen/grid_item_radius">
 
             <ImageView
                 android:id="@+id/grid_item_preview"
@@ -35,11 +28,10 @@
 
             <ImageView
                 android:id="@+id/grid_item_check"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/grid_item_check"
+                android:layout_height="@dimen/grid_item_check"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_check"
-                android:tint="@color/colorTextIcons"
                 android:scaleType="centerCrop"
                 android:visibility="gone" />
 

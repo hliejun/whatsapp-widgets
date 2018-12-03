@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- material -->
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryLight">#5C6BC0</color>
-    <color name="colorPrimaryDark">#3949AB</color>
+    <color name="colorPrimary">#303F9F</color>
+    <color name="colorPrimaryLight">#3949AB</color>
+    <color name="colorPrimaryDark">#283593</color>
     <color name="colorSecondary">#00897B</color>
     <color name="colorSecondaryLight">#009688</color>
     <color name="colorSecondaryDark">#00695C</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorAccentAlt">#A7FFEB</color>
     <color name="colorTextIcons">#FFFFFF</color>
+    <color name="colorInverseTextIcons">#000000</color>
     <color name="colorPrimaryText">#FFFFFF</color>
-    <color name="colorSecondaryText">#B0BEC5</color>
-    <color name="colorHintText">#CFD8DC</color>
+    <color name="colorInversePrimaryText">#000000</color>
+    <color name="colorSecondaryText">#99FFFFFF</color>
+    <color name="colorHintText">#99FFFFFF</color>
+    <color name="colorInverseHintText">#99000000</color>
+    <color name="colorFade">#88FFFFFF</color>
+    <color name="colorInverseFade">#AA000000</color>
+    <color name="colorFadeText">#99FFFFFF</color>
     <color name="colorWarning">#FFD600</color>
 
     <!-- card -->
     <color name="transparent">#00000000</color>
     <color name="card_background">#ffffff</color>
-    <color name="card_shadow_1">#45343434</color>
-    <color name="card_shadow_2">#453d3d3d</color>
+    <color name="card_shadow_1">#20343434</color>
+    <color name="card_shadow_2">#203d3d3d</color>
     <color name="card_detailing">#eee</color>
 </resources>

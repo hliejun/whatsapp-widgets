@@ -9,8 +9,6 @@
     android:fitsSystemWindows="true"
     tools:context=".ConfigurationActivity">
 
-    <!-- TODO: Check and ID all views -->
-
     <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"

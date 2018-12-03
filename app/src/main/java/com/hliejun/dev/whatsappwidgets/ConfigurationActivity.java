@@ -2,13 +2,16 @@ package com.hliejun.dev.whatsappwidgets;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+
 import android.net.Uri;
+
 import android.os.Bundle;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import android.provider.Settings;
+
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -24,6 +27,7 @@ import android.widget.FrameLayout;
 
 import com.hliejun.dev.whatsappwidgets.adapters.SectionsPagerAdapter;
 import com.hliejun.dev.whatsappwidgets.fragments.SectionFragment;
+import com.hliejun.dev.whatsappwidgets.fragments.StylingFragment;
 import com.hliejun.dev.whatsappwidgets.interfaces.ContactInterface;
 import com.hliejun.dev.whatsappwidgets.interfaces.OptionsInterface;
 import com.hliejun.dev.whatsappwidgets.interfaces.StylingInterface;
@@ -130,6 +134,9 @@ public class ConfigurationActivity extends AppCompatActivity implements ContactI
                         getPageBrowseListener(2)
                 );
             } else {
+                if (configuration.getColor() == null) {
+                    configuration.setColor(StylingFragment.DEFAULT_COLOR);
+                }
                 Context context = view.getContext();
                 saveWidgetPref(context, mAppWidgetId, configuration);
 
@@ -224,10 +231,6 @@ public class ConfigurationActivity extends AppCompatActivity implements ContactI
         }
 
         if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
-
-            // TODO: Programmatically add new widget with new widget ID if possible
-            // TODO: Alternatively, uncomment and create separate tutorial activity as main (with button to hide icon from home screen and instructions on how to undo that)
-
              finish();
              return;
         }

@@ -9,8 +9,6 @@
     android:background="?attr/colorPrimary"
     tools:context=".ConfigurationActivity$SectionFragment">
 
-    <!-- TODO: Check and ID all views -->
-
     <TextView
         android:id="@+id/section_title"
         android:layout_width="wrap_content"

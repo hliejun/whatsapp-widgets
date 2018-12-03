@@ -14,9 +14,29 @@ import com.hliejun.dev.whatsappwidgets.adapters.PaletteGridAdapter;
 import com.hliejun.dev.whatsappwidgets.interfaces.StylingInterface;
 import com.hliejun.dev.whatsappwidgets.models.PaletteColor;
 
-// TODO: Refactor to cut down common code chunks
-
 public class StylingFragment extends SectionFragment {
+
+    final public static PaletteColor DEFAULT_COLOR =  new PaletteColor("Indigo", "#5C6BC0");
+
+    final private PaletteColor[] colors = {
+            new PaletteColor("Red", "#D32F2F"),
+            new PaletteColor("Pink", "#FF4081"),
+            new PaletteColor("Purple", "#AB47BC"),
+            new PaletteColor("Lavender", "#7E57C2"),
+            new PaletteColor("Indigo", "#5C6BC0"),
+            new PaletteColor("Blue", "#1E88E5"),
+            new PaletteColor("Cyan", "#0097A7"),
+            new PaletteColor("Teal", "#009688"),
+            new PaletteColor("Green", "#43A047"),
+            new PaletteColor("Olive", "#827717"),
+            new PaletteColor("Yellow", "#FBC02D"),
+            new PaletteColor("Orange", "#F4511E"),
+            new PaletteColor("Brown", "#8D6E63"),
+            new PaletteColor("Gray", "#9E9E9E"),
+            new PaletteColor("Metal", "#90A4AE"),
+            new PaletteColor("White", "#F5F5F5", PaletteColor.ColorType.LIGHT),
+            new PaletteColor("Black", "#263238")
+    };
 
     /*** Listeners */
 
@@ -63,7 +83,7 @@ public class StylingFragment extends SectionFragment {
 
     @Override
     protected void onCreateViewAfterViewStubInflated(View inflatedView, Bundle savedInstanceState) {
-        final PaletteGridAdapter adapter = new PaletteGridAdapter(inflatedView.getContext());
+        final PaletteGridAdapter adapter = new PaletteGridAdapter(inflatedView.getContext(), colors);
         GridView gridView = inflatedView.findViewById(R.id.section_styling_grid);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(gridItemListener);

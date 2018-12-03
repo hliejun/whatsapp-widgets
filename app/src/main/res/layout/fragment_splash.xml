@@ -9,8 +9,6 @@
     android:background="?attr/colorPrimary"
     tools:context=".ConfigurationActivity$SectionFragment">
 
-    <!-- TODO: Check and ID all views -->
-
     <TextView
         android:id="@+id/section_heading"
         android:layout_width="wrap_content"
@@ -45,92 +43,111 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/section_heading" />
 
-    <TextView
-        android:id="@+id/section_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_margin_double"
-        android:text="@string/splash_title"
-        android:textColor="@color/colorPrimaryText"
-        android:textSize="@dimen/text_size_subtitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/section_image" />
-
-    <TextView
-        android:id="@+id/section_dot_whatsapp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_margin_double"
-        android:text="@string/dot"
-        android:textColor="@color/colorPrimaryText"
-        android:textSize="@dimen/text_size_normal"
-        app:layout_constraintEnd_toStartOf="@+id/section_description_whatsapp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/section_title" />
-
-    <TextView
-        android:id="@+id/section_description_whatsapp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_margin_half"
-        android:layout_marginRight="@dimen/activity_margin_double"
-        android:text="@string/splash_description_whatsapp_portrait"
-        android:textColor="@color/colorPrimaryText"
-        android:textSize="@dimen/text_size_normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/section_dot_whatsapp"
-        app:layout_constraintTop_toBottomOf="@+id/section_title" />
-
-    <TextView
-        android:id="@+id/section_dot_permissions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_margin_double"
-        android:text="@string/dot"
-        android:textColor="@color/colorPrimaryText"
-        android:textSize="@dimen/text_size_normal"
-        app:layout_constraintEnd_toStartOf="@id/section_description_permissions"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/section_description_whatsapp" />
-
-    <TextView
-        android:id="@+id/section_description_permissions"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_margin_half"
-        android:layout_marginRight="@dimen/activity_margin_double"
-        android:text="@string/splash_description_permissions_portrait"
-        android:textColor="@color/colorPrimaryText"
-        android:textSize="@dimen/text_size_normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/section_dot_permissions"
-        app:layout_constraintTop_toBottomOf="@+id/section_description_whatsapp" />
-
-    <android.support.design.button.MaterialButton
-        style="@style/Widget.AppCompat.Button"
-        android:id="@+id/section_button"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/button_height"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:background="?attr/colorAccent"
-        android:minWidth="@dimen/button_min_width"
-        android:paddingLeft="@dimen/button_padding_horizontal"
-        android:paddingRight="@dimen/button_padding_horizontal"
-        android:text="@string/button_splash"
-        android:textColor="@color/colorPrimaryText"
-        android:textSize="@dimen/text_size_button"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:requiresFadingEdge="vertical"
+        android:fadingEdgeLength="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/section_description_permissions"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/section_image"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/section_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_margin_double"
+                android:text="@string/splash_title"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/text_size_subtitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/section_dot_whatsapp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_margin_double"
+                android:text="@string/dot"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/text_size_normal"
+                app:layout_constraintEnd_toStartOf="@+id/section_description_whatsapp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/section_title" />
+
+            <TextView
+                android:id="@+id/section_description_whatsapp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_margin_half"
+                android:layout_marginRight="@dimen/activity_margin_double"
+                android:text="@string/splash_description_whatsapp_portrait"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/text_size_normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/section_dot_whatsapp"
+                app:layout_constraintTop_toBottomOf="@+id/section_title" />
+
+            <TextView
+                android:id="@+id/section_dot_permissions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_margin_double"
+                android:text="@string/dot"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/text_size_normal"
+                app:layout_constraintEnd_toStartOf="@id/section_description_permissions"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/section_description_whatsapp" />
+
+            <TextView
+                android:id="@+id/section_description_permissions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_margin_half"
+                android:layout_marginRight="@dimen/activity_margin_double"
+                android:text="@string/splash_description_permissions_portrait"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/text_size_normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/section_dot_permissions"
+                app:layout_constraintTop_toBottomOf="@+id/section_description_whatsapp" />
+
+            <android.support.design.button.MaterialButton
+                style="@style/Widget.AppCompat.Button"
+                android:id="@+id/section_button"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/button_height"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="?attr/colorAccent"
+                android:minWidth="@dimen/button_min_width"
+                android:paddingLeft="@dimen/button_padding_horizontal"
+                android:paddingRight="@dimen/button_padding_horizontal"
+                android:text="@string/button_splash"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/text_size_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/section_description_permissions"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

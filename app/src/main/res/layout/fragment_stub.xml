@@ -4,16 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- TODO: Extract sizes to dimens -->
-    <!-- TODO: Check and ID all views -->
-
     <ProgressBar
         android:id="@+id/progress_bar"
         android:foregroundGravity="center"
         android:layout_gravity="center"
         android:indeterminate="true"
-        android:layout_width="48dp"
-        android:layout_height="48dp" />
+        android:layout_width="@dimen/progress_bar"
+        android:layout_height="@dimen/progress_bar" />
 
     <ViewStub
         android:id="@+id/view_stub"
