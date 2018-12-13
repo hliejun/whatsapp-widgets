@@ -1,4 +1,4 @@
-package com.hliejun.dev.whatsappwidgets.fragments;
+package com.hliejun.dev.widgets.fragments;
 
 import android.content.Intent;
 
@@ -9,10 +9,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.hliejun.dev.whatsappwidgets.R;
-import com.hliejun.dev.whatsappwidgets.adapters.PaletteGridAdapter;
-import com.hliejun.dev.whatsappwidgets.interfaces.StylingInterface;
-import com.hliejun.dev.whatsappwidgets.models.PaletteColor;
+import com.hliejun.dev.widgets.R;
+import com.hliejun.dev.widgets.adapters.PaletteGridAdapter;
+import com.hliejun.dev.widgets.interfaces.StylingInterface;
+import com.hliejun.dev.widgets.models.PaletteColor;
 
 public class StylingFragment extends SectionFragment {
 

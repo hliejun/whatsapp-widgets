@@ -1,4 +1,4 @@
-package com.hliejun.dev.whatsappwidgets.adapters;
+package com.hliejun.dev.widgets.adapters;
 
 import android.annotation.SuppressLint;
 
@@ -13,8 +13,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.ImageView;
 
-import com.hliejun.dev.whatsappwidgets.R;
-import com.hliejun.dev.whatsappwidgets.models.PaletteColor;
+import com.hliejun.dev.widgets.R;
+import com.hliejun.dev.widgets.models.PaletteColor;
 
 public class PaletteGridAdapter extends BaseAdapter {
 

@@ -1,4 +1,4 @@
-package com.hliejun.dev.whatsappwidgets.fragments;
+package com.hliejun.dev.widgets.fragments;
 
 import android.app.Activity;
 
@@ -24,13 +24,13 @@ import android.widget.Button;
 
 import java.util.List;
 
-import com.hliejun.dev.whatsappwidgets.R;
-import com.hliejun.dev.whatsappwidgets.ConfigurationActivity;
-import com.hliejun.dev.whatsappwidgets.NotificationManager;
-import com.hliejun.dev.whatsappwidgets.interfaces.ContactInterface;
-import com.hliejun.dev.whatsappwidgets.interfaces.OptionsInterface;
-import com.hliejun.dev.whatsappwidgets.views.LockableViewPager;
-import com.hliejun.dev.whatsappwidgets.models.Contact;
+import com.hliejun.dev.widgets.R;
+import com.hliejun.dev.widgets.ConfigurationActivity;
+import com.hliejun.dev.widgets.NotificationManager;
+import com.hliejun.dev.widgets.interfaces.ContactInterface;
+import com.hliejun.dev.widgets.interfaces.OptionsInterface;
+import com.hliejun.dev.widgets.views.LockableViewPager;
+import com.hliejun.dev.widgets.models.Contact;
 
 import com.wafflecopter.multicontactpicker.ContactResult;
 import com.wafflecopter.multicontactpicker.LimitColumn;

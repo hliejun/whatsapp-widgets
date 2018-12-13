@@ -1,11 +1,11 @@
-package com.hliejun.dev.whatsappwidgets.fragments;
+package com.hliejun.dev.widgets.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.hliejun.dev.whatsappwidgets.R;
+import com.hliejun.dev.widgets.R;
 
 public class ExampleFragment extends SectionFragment {
 

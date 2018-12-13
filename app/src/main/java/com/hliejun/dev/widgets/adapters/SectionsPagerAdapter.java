@@ -1,4 +1,4 @@
-package com.hliejun.dev.whatsappwidgets.adapters;
+package com.hliejun.dev.widgets.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -6,13 +6,13 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import android.view.ViewGroup;
 
-import com.hliejun.dev.whatsappwidgets.R;
-import com.hliejun.dev.whatsappwidgets.fragments.SectionFragment;
-import com.hliejun.dev.whatsappwidgets.fragments.SplashFragment;
-import com.hliejun.dev.whatsappwidgets.fragments.ContactFragment;
-import com.hliejun.dev.whatsappwidgets.fragments.OptionsFragment;
-import com.hliejun.dev.whatsappwidgets.fragments.StylingFragment;
-import com.hliejun.dev.whatsappwidgets.fragments.ExampleFragment;
+import com.hliejun.dev.widgets.R;
+import com.hliejun.dev.widgets.fragments.SectionFragment;
+import com.hliejun.dev.widgets.fragments.SplashFragment;
+import com.hliejun.dev.widgets.fragments.ContactFragment;
+import com.hliejun.dev.widgets.fragments.OptionsFragment;
+import com.hliejun.dev.widgets.fragments.StylingFragment;
+import com.hliejun.dev.widgets.fragments.ExampleFragment;
 
 /**
  * A {@link FragmentPagerAdapter} that returns a fragment corresponding to

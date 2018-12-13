@@ -1,4 +1,4 @@
-package com.hliejun.dev.whatsappwidgets.fragments;
+package com.hliejun.dev.widgets.fragments;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -15,10 +15,10 @@ import android.view.View;
 
 import android.widget.Button;
 
-import com.hliejun.dev.whatsappwidgets.R;
-import com.hliejun.dev.whatsappwidgets.ConfigurationActivity;
-import com.hliejun.dev.whatsappwidgets.NotificationManager;
-import com.hliejun.dev.whatsappwidgets.views.LockableViewPager;
+import com.hliejun.dev.widgets.R;
+import com.hliejun.dev.widgets.ConfigurationActivity;
+import com.hliejun.dev.widgets.NotificationManager;
+import com.hliejun.dev.widgets.views.LockableViewPager;
 
 public class SplashFragment extends SectionFragment {
 

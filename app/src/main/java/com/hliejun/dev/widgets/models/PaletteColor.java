@@ -1,4 +1,4 @@
-package com.hliejun.dev.whatsappwidgets.models;
+package com.hliejun.dev.widgets.models;
 
 import java.io.Serializable;
 

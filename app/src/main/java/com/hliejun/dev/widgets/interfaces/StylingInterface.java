@@ -1,6 +1,6 @@
-package com.hliejun.dev.whatsappwidgets.interfaces;
+package com.hliejun.dev.widgets.interfaces;
 
-import com.hliejun.dev.whatsappwidgets.models.PaletteColor;
+import com.hliejun.dev.widgets.models.PaletteColor;
 
 public interface StylingInterface {
 

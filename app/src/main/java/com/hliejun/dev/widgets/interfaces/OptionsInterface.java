@@ -1,4 +1,4 @@
-package com.hliejun.dev.whatsappwidgets.interfaces;
+package com.hliejun.dev.widgets.interfaces;
 
 public interface OptionsInterface {
 

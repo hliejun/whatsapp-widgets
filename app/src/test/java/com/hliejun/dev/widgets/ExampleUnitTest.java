@@ -1,4 +1,4 @@
-package com.hliejun.dev.whatsappwidgets;
+package com.hliejun.dev.widgets;
 
 import org.junit.Test;
 

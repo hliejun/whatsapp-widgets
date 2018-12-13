@@ -1,4 +1,4 @@
-package com.hliejun.dev.whatsappwidgets.views;
+package com.hliejun.dev.widgets.views;
 
 import android.support.v4.view.ViewPager;
 

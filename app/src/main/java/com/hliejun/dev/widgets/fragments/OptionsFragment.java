@@ -1,4 +1,4 @@
-package com.hliejun.dev.whatsappwidgets.fragments;
+package com.hliejun.dev.widgets.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,12 +21,12 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.hliejun.dev.whatsappwidgets.ConfigurationActivity;
-import com.hliejun.dev.whatsappwidgets.R;
-import com.hliejun.dev.whatsappwidgets.interfaces.ContactInterface;
-import com.hliejun.dev.whatsappwidgets.interfaces.OptionsInterface;
-import com.hliejun.dev.whatsappwidgets.models.Contact;
-import com.hliejun.dev.whatsappwidgets.views.LockableViewPager;
+import com.hliejun.dev.widgets.ConfigurationActivity;
+import com.hliejun.dev.widgets.R;
+import com.hliejun.dev.widgets.interfaces.ContactInterface;
+import com.hliejun.dev.widgets.interfaces.OptionsInterface;
+import com.hliejun.dev.widgets.models.Contact;
+import com.hliejun.dev.widgets.views.LockableViewPager;
 
 public class OptionsFragment extends SectionFragment {
 

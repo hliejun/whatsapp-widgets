@@ -1,4 +1,4 @@
-package com.hliejun.dev.whatsappwidgets;
+package com.hliejun.dev.widgets;
 
 import android.app.PendingIntent;
 
@@ -29,9 +29,9 @@ import android.view.View;
 
 import android.widget.RemoteViews;
 
-import com.hliejun.dev.whatsappwidgets.models.Contact;
-import com.hliejun.dev.whatsappwidgets.models.PaletteColor;
-import com.hliejun.dev.whatsappwidgets.models.WidgetData;
+import com.hliejun.dev.widgets.models.Contact;
+import com.hliejun.dev.widgets.models.PaletteColor;
+import com.hliejun.dev.widgets.models.WidgetData;
 
 /**
  * Implementation of App Widget functionality.

@@ -1,4 +1,4 @@
-package com.hliejun.dev.whatsappwidgets.fragments;
+package com.hliejun.dev.widgets.fragments;
 
 import android.content.Intent;
 
@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import android.view.View;
 
-import com.hliejun.dev.whatsappwidgets.R;
+import com.hliejun.dev.widgets.R;
 
 public class SectionFragment extends AsyncFragment {
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
-    android:configure="com.hliejun.dev.whatsappwidgets.ConfigurationActivity"
+    android:configure="com.hliejun.dev.widgets.ConfigurationActivity"
     android:initialKeyguardLayout="@layout/medium_widget"
     android:initialLayout="@layout/medium_widget"
     android:minHeight="110dp"

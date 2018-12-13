@@ -1,4 +1,4 @@
-package com.hliejun.dev.whatsappwidgets;
+package com.hliejun.dev.widgets;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,16 +25,16 @@ import android.appwidget.AppWidgetManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
-import com.hliejun.dev.whatsappwidgets.adapters.SectionsPagerAdapter;
-import com.hliejun.dev.whatsappwidgets.fragments.SectionFragment;
-import com.hliejun.dev.whatsappwidgets.fragments.StylingFragment;
-import com.hliejun.dev.whatsappwidgets.interfaces.ContactInterface;
-import com.hliejun.dev.whatsappwidgets.interfaces.OptionsInterface;
-import com.hliejun.dev.whatsappwidgets.interfaces.StylingInterface;
-import com.hliejun.dev.whatsappwidgets.models.Contact;
-import com.hliejun.dev.whatsappwidgets.models.PaletteColor;
-import com.hliejun.dev.whatsappwidgets.models.WidgetData;
-import com.hliejun.dev.whatsappwidgets.views.LockableViewPager;
+import com.hliejun.dev.widgets.adapters.SectionsPagerAdapter;
+import com.hliejun.dev.widgets.fragments.SectionFragment;
+import com.hliejun.dev.widgets.fragments.StylingFragment;
+import com.hliejun.dev.widgets.interfaces.ContactInterface;
+import com.hliejun.dev.widgets.interfaces.OptionsInterface;
+import com.hliejun.dev.widgets.interfaces.StylingInterface;
+import com.hliejun.dev.widgets.models.Contact;
+import com.hliejun.dev.widgets.models.PaletteColor;
+import com.hliejun.dev.widgets.models.WidgetData;
+import com.hliejun.dev.widgets.views.LockableViewPager;
 
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
@@ -47,7 +47,7 @@ public class ConfigurationActivity extends AppCompatActivity implements ContactI
             R.layout.fragment_styling
     };
 
-    private static final String PREFS_NAME = "com.hliejun.dev.whatsappwidgets.MediumWidget";
+    private static final String PREFS_NAME = "com.hliejun.dev.widgets.MediumWidget";
     private static final String PREF_PREFIX_KEY = "appwidget_";
     private static final String STATE_CONFIG_KEY = "configuration";
 

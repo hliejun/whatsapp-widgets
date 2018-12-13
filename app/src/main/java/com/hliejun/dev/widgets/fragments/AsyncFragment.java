@@ -1,4 +1,4 @@
-package com.hliejun.dev.whatsappwidgets.fragments;
+package com.hliejun.dev.widgets.fragments;
 
 import android.os.Bundle;
 
@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 
-import com.hliejun.dev.whatsappwidgets.R;
+import com.hliejun.dev.widgets.R;
 
 public abstract class AsyncFragment extends Fragment {
 

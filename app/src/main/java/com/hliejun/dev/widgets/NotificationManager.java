@@ -1,4 +1,4 @@
-package com.hliejun.dev.whatsappwidgets;
+package com.hliejun.dev.widgets;
 
 import android.app.Activity;
 import android.app.AlertDialog;
